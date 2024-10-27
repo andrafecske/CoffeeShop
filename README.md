@@ -46,5 +46,6 @@ Manage client orders.
 Manage client loyalty cards.
 This system helps employees manage client interactions and loyalty points.
 
-![image](https://github.com/user-attachments/assets/de25339a-6a17-48cb-9edd-d1e9d7342dda)
+![image](https://github.com/user-attachments/assets/d0f1c06b-9a69-4319-a7af-11ffbf1be216)
+
 
