@@ -43,7 +43,8 @@ Manage client orders.
 
 This system helps employees manage client interactions and loyalty points.
 
-![image](https://github.com/user-attachments/assets/54fc418d-b146-45c8-98c7-52d4341de1c7)
+![image](https://github.com/user-attachments/assets/c8fff1e1-9564-48fa-b2bb-e3f57bdc0eb1)
+
 
 
 
