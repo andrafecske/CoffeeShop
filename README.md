@@ -34,7 +34,7 @@ Coffee: Attributes like caffeine content, milk type, and extra options(in case t
 Food: Attributes like type, allergens, and whether the item is organic.
 
 Orders:
-The clients create the orders, the admin is the one that can update or delete it.
+The clients create the orders.
 
 Employees can:
 Add new clients.
