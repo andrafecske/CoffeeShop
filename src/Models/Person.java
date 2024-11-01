@@ -1,19 +1,20 @@
 package Models;
 
-public class Person {
-    int ID, age;
-    String name;
+public class Person implements HasID {
+    protected Integer ID;
+    protected int age;
+    protected String name;
 
-    public Person(int ID, int age, String name) {
+    public Person(Integer ID, int age, String name) {
         this.ID = ID;
         this.age = age;
         this.name = name;
     }
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
@@ -33,4 +34,13 @@ public class Person {
         this.name = name;
     }
 
+    @Override
+    public Integer getId() {
+        return this.ID;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + ID + ", Age: " + age + ", Name: " + name;
+    }
 }

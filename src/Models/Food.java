@@ -6,7 +6,7 @@ public class Food extends Product {
     Enum FoodType;
     List<String> Ingredients;
 
-    public Food(int productID, int points, String name) {
+    public Food(Integer productID, int points, String name) {
         super(productID, points, name);
     }
 

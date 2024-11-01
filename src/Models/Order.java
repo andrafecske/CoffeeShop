@@ -1,14 +1,14 @@
 package Models;
 import java.util.List;
 
-public class Order {
-    public int orderID;
+public class Order implements HasID{
+    private Integer ID;
     private int points, totalCost = 0;
     private Client client;
     private  List<Product> products;
 
-    public Order(int orderID, int points, int totalCost, Client client, List<Product> products) {
-        this.orderID = orderID;
+    public Order(Integer orderID, int points, int totalCost, Client client, List<Product> products) {
+        this.ID = orderID;
         this.points = points;
         this.client = client;
         this.products = products;
@@ -40,11 +40,12 @@ public class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-    public int getOrderID() {
-        return orderID;
-    }
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+    public void setOrderID(Integer orderID) {
+        this.ID = orderID;
     }
 
+    @Override
+    public Integer getId() {
+        return ID;
+    }
 }

@@ -5,13 +5,13 @@ public class Coffee extends Product{
     Boolean hasCaffeine;
     Enum MilkType;
     String extra;
-    public Coffee(int productID, int points, String name, boolean hasCaffeine, Enum milkType, String extra) {
+    public Coffee(Integer productID, int points, String name, boolean hasCaffeine, Enum milkType, String extra) {
         super(productID, points, name);
         this.hasCaffeine = hasCaffeine;
         this.MilkType = milkType;
         this.extra = extra;
     }
-    public Coffee(int productID, int points, String name, boolean hasCaffeine, Enum milkType) {
+    public Coffee(Integer productID, int points, String name, boolean hasCaffeine, Enum milkType) {
         super(productID, points, name);
         this.hasCaffeine = hasCaffeine;
         this.MilkType = MilkType;

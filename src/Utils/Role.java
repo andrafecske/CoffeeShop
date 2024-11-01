@@ -1,7 +1,7 @@
 package Utils;
 
 public enum Role {
-    FoodManager,
-    ClientManager,
-    Manager
+    ProductManager, //can manage products
+    ClientManager, //can manage clients
+    Manager //can manage clients, products, orders
 }

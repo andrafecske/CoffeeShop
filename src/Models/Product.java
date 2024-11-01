@@ -1,21 +1,22 @@
 package Models;
 
-public class Product {
-    public int productID;
-    private int points;
-    private int price;
-    private String name;
+public class Product implements HasID{
+    protected Integer ID;
+    protected int points;
+    protected int price;
+    protected String name;
 
-    public Product(int productID, int points, String name) {
-        this.productID = productID;
+    public Product(Integer ID, int points, String name) {
+        this.ID = ID;
         this.points = points;
         this.name = name;
     }
-    public int getProductID() {
-        return productID;
+
+    public Integer getProductID() {
+        return ID;
     }
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProductID(Integer ID) {
+        this.ID = ID;
     }
     public int getPoints() {
         return points;
@@ -36,6 +37,10 @@ public class Product {
         this.price = price;
     }
 
+    @Override
+    public Integer getId() {
+        return ID;
+    }
 }
 
 

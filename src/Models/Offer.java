@@ -1,21 +1,17 @@
 package Models;
 import java.util.List;
 
-public class Offer {
-    public int offerID;
+public class Offer implements HasID{
+    public Integer offerID;
     private List<Product> products;
     public int pointCost;
-    public Offer(int offerID, List<Product> products, int pointCost) {
+    public Offer(Integer offerID, List<Product> products, int pointCost) {
         this.offerID = offerID;
         this.products = products;
         this.pointCost = pointCost;
     }
 
-    public int getOfferID() {
-        return offerID;
-    }
-
-    public void setOfferID(int offerID) {
+    public void setOfferID(Integer offerID) {
         this.offerID = offerID;
     }
 
@@ -37,6 +33,11 @@ public class Offer {
 
     public String toString() {
         return "Offer [offerID=" + offerID + ", products=" + products + ", pointCost=";
+    }
+
+    @Override
+    public Integer getId() {
+        return offerID;
     }
 }
 
