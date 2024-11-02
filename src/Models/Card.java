@@ -38,4 +38,10 @@ public class Card {
         this.currentPoints = currentPoints;
     }
 
+    @Override
+    public String toString() {
+        return
+                "currentPoints=" + currentPoints +
+                " and totalPoints=" + totalPoints ;
+    }
 }

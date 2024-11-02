@@ -2,7 +2,7 @@ package Models;
 
 public class Client extends Person {
 
-    Integer cardID;
+
     public Card card;
     public Client(int ID, int age, String name) {
         super(ID, age, name);
@@ -12,4 +12,14 @@ public class Client extends Person {
     public Card getCard() {
         return card;
     }
+
+    @Override
+    public String toString() {
+        return "Client " +
+                "ID=" + ID +
+                ", Age=" + age +
+                ", Name='" + name + '\'' +
+                ", Card:" + card.toString() ;
+    }
+
 }

@@ -66,7 +66,4 @@ public class AdminService {
         return adminRepo.read(adminId);
     }
 
-    public void deleteAdmin(Integer adminId) {
-        adminRepo.delete(adminId);
-    }
 }
