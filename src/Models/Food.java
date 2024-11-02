@@ -3,11 +3,11 @@ package Models;
 import java.util.List;
 
 public class Food extends Product {
-    Enum FoodType;
-    List<String> Ingredients;
+    Enum FoodType ;
 
-    public Food(Integer productID, int points, String name) {
-        super(productID, points, name);
+    public Food(Integer productID, int price, int points, String name, Enum FoodType) {
+        super(productID, price, points, name);
+        this.FoodType = FoodType;
     }
 
     public Enum getFoodType() {
@@ -16,10 +16,5 @@ public class Food extends Product {
     public void setFoodType(Enum foodType) {
         FoodType = foodType;
     }
-    public List<String> getIngredients() {
-        return Ingredients;
-    }
-    public void setIngredients(List<String> ingredients) {
-        Ingredients = ingredients;
-    }
+
 }

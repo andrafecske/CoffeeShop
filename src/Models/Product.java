@@ -6,8 +6,9 @@ public class Product implements HasID{
     protected int price;
     protected String name;
 
-    public Product(Integer ID, int points, String name) {
+    public Product(Integer ID,int price,  int points, String name) {
         this.ID = ID;
+        this.price = price;
         this.points = points;
         this.name = name;
     }
