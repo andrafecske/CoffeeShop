@@ -28,4 +28,18 @@ public class Controller {
             }
         }
     }
+
+    public void updateAdmin(Admin admin) {
+        adminService.updateAdmin(admin);
+        System.out.println("Admin updated successfully");
+    }
+
+    public void deleteAdmin(Admin admin) {
+        adminService.deleteAdmin(admin);
+        System.out.println("Admin deleted successfully");
+    }
+
+    public Admin getAdminById(Integer id) {
+        return adminService.getAdminById(id);
+    }
 }

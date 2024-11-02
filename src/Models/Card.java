@@ -1,12 +1,12 @@
 package Models;
 
-public class Card implements HasID{
-    private Integer ID;
+public class Card {
     private int currentPoints;
     private int totalPoints;
 
-    public Card(Integer ID) {
-        this.ID = ID;
+    public Card() {
+        this.currentPoints = 0;
+        this.totalPoints = 0;
     }
 
     private boolean isMaxedOut(){
@@ -38,12 +38,4 @@ public class Card implements HasID{
         this.currentPoints = currentPoints;
     }
 
-    @Override
-    public Integer getId() {
-        return ID;
-    }
-
-    public void setId(Integer ID) {
-        this.ID = ID;
-    }
 }

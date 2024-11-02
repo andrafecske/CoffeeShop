@@ -24,8 +24,10 @@ public class AdminService {
     }
 
     public void addAdmin(Admin admin) {
-        if(admin == null)
+        if(admin == null) {
             System.out.println("Admin is null");
+            return;
+        }
 
         adminRepo.create(admin);
     }
@@ -34,4 +36,37 @@ public class AdminService {
         return adminRepo.getAll();
     }
 
+    public void updateAdmin(Admin admin) {
+        if(admin == null){
+            System.out.println("Admin is null");
+            return;}
+
+        Admin exists = adminRepo.read(admin.getId());
+        if (exists != null) {
+            adminRepo.update(admin.getId(), admin);
+        } else {
+            System.out.println("Admin not found");
+        }
+    }
+
+    public void deleteAdmin(Admin admin) {
+        if(admin == null){
+            System.out.println("Admin is null");
+            return;}
+
+        Admin exists = adminRepo.read(admin.getId());
+        if (exists != null) {
+            adminRepo.delete(admin.getId());
+        }else{
+            System.out.println("Admin not found");
+        }
+    }
+
+    public Admin getAdminById(Integer adminId) {
+        return adminRepo.read(adminId);
+    }
+
+    public void deleteAdmin(Integer adminId) {
+        adminRepo.delete(adminId);
+    }
 }

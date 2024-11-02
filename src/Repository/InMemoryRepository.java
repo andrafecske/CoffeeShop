@@ -9,7 +9,7 @@ public class InMemoryRepository <T extends HasID> implements IRepository<T> {
     private final Map<Integer,T> map = new HashMap<>();
     @Override
     public void create(T obj) {
-        map.putIfAbsent(obj.hashCode(), obj);
+        map.putIfAbsent(obj.getId(), obj);
     }
 
     @Override
