@@ -4,25 +4,13 @@ public class Coffee extends Product{
 
     Boolean hasCaffeine;
     Enum MilkType;
-    String extra;
-    public Coffee(Integer productID, int points, String name, boolean hasCaffeine, Enum milkType, String extra) {
-        super(productID, points, name);
-        this.hasCaffeine = hasCaffeine;
-        this.MilkType = milkType;
-        this.extra = extra;
-    }
-    public Coffee(Integer productID, int points, String name, boolean hasCaffeine, Enum milkType) {
-        super(productID, points, name);
+
+    public Coffee(Integer productID, int price, int points, String name, boolean hasCaffeine, Enum milkType) {
+        super(productID, price, points, name);
         this.hasCaffeine = hasCaffeine;
         this.MilkType = MilkType;
     }
 
-    public String getExtra() {
-        return extra;
-    }
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
     public Enum getMilkType() {
         return MilkType;
     }
@@ -34,5 +22,17 @@ public class Coffee extends Product{
     }
     public void setHasCaffeine(Boolean hasCaffeine) {
         this.hasCaffeine = hasCaffeine;
+    }
+
+    @Override
+    public String toString() {
+        return "Coffee{" +
+                "hasCaffeine=" + hasCaffeine +
+                ", MilkType=" + MilkType +
+                ", ID=" + ID +
+                ", points=" + points +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

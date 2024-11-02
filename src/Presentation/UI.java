@@ -20,10 +20,35 @@ public class UI {
         this.clientUI = clientUI;
     }
 
-    public void start(){
+    public void start() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Coffee Shop Log in");
+        boolean continueSession = true;
 
+        while (continueSession) {
+            System.out.println("Coffee Shop Login System");
+            System.out.println("1. Login as Admin or Client");
+            System.out.println("2. Exit");
+            System.out.print("Choose an option: ");
+            String option = scanner.nextLine();
+
+            switch (option) {
+                case "1":
+                    login(scanner);  // Attempt to log in
+                    break;
+
+                case "2":
+                    continueSession = false;
+                    System.out.println("Exiting the system. Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    private void login(Scanner scanner) {
         System.out.println("Enter Name:");
         String name = scanner.nextLine();
 
@@ -36,21 +61,26 @@ public class UI {
             return;
         }
 
+        // Check for Admin login
         Admin admin = adminController.getAdminById(id);
         if (admin != null && admin.getName().equalsIgnoreCase(name)) {
             System.out.println("Welcome, Admin " + name + "!");
-            adminUI.start();
+            adminUI.start();  // Run the Admin-specific UI operations
+
+            System.out.println("You have been logged out.");
             return;
         }
 
+        // Check for Client login
         Client client = clientController.getClientById(id);
         if (client != null && client.getName().equalsIgnoreCase(name)) {
             System.out.println("Welcome, Client " + name + "!");
-            clientUI.start();
+            clientUI.start();  // Run the Client-specific UI operations
+
+            System.out.println("You have been logged out.");
             return;
         }
 
         System.out.println("Login failed. No admin or client found with the provided name and ID.");
-
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class FoodService {
     private final IRepository<Food> foodRepo;
+
     public FoodService(IRepository<Food> foodRepo) {
         this.foodRepo = foodRepo;
         initializeFoodRepo();
@@ -16,6 +17,8 @@ public class FoodService {
     private void initializeFoodRepo(){
       Food food1 = new Food(1, 20, 50, "Chicken Sandwich", FoodType.SANDWICH);
       Food food2 = new Food(2, 26, 80, "Chickpea Salad", FoodType.MEAL);
+      foodRepo.create(food1);
+      foodRepo.create(food2);
     }
 
     public void addFood(Food food){
@@ -34,4 +37,5 @@ public class FoodService {
     public Food getFoodById(int id){
         return  foodRepo.read(id);
     }
+
 }

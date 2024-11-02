@@ -17,4 +17,14 @@ public class Food extends Product {
         FoodType = foodType;
     }
 
+    @Override
+    public String toString() {
+        return "Food{" +
+                "ID=" + ID +
+                ", points=" + points +
+                ", price=" + price +
+                ", name='" + name + '\'' +
+                ", FoodType=" + FoodType +
+                '}';
+    }
 }
