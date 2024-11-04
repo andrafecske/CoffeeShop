@@ -1,9 +1,6 @@
 package Presentation;
 
-import Controller.ClientController;
-import Controller.CoffeeController;
-import Controller.FoodController;
-import Controller.OrderController;
+import Controller.*;
 import Models.Client;
 import Models.Food;
 import Models.Order;
@@ -15,17 +12,11 @@ import java.util.Scanner;
 
 public class ClientUI {
 
-    private final ClientController clientController;
-    private final CoffeeController coffeeController;
-    private final FoodController foodController;
-    private final OrderController orderController;
+    private final CoffeeShopController coffeeShopController;
     private final Scanner scanner;
     private Integer id;
-    public ClientUI(ClientController clientController, CoffeeController coffeeController, FoodController foodController, OrderController orderController, Scanner scanner) {
-        this.clientController = clientController;
-        this.coffeeController = coffeeController;
-        this.foodController = foodController;
-        this.orderController = orderController;
+    public ClientUI(CoffeeShopController coffeeShopController, Scanner scanner) {
+        this.coffeeShopController = coffeeShopController;
         this.scanner = scanner;
     }
 
@@ -49,16 +40,16 @@ public class ClientUI {
 
             switch(option){
                 case "1":
-                    clientController.listAllClients();
+                    coffeeShopController.listAllClients();
                     break;
                 case"2":
                     addClient(scanner);
                     break;
                 case "3":
                     System.out.println("Foods in the menu:");
-                     foodController.listAllFoods();
+                     coffeeShopController.listAllFoods();
                      System.out.println("Coffe menu:");
-                     coffeeController.listAllCoffees();
+                     coffeeShopController.listAllCoffees();
                      break;
 
                 case"4":
@@ -66,7 +57,7 @@ public class ClientUI {
                     System.out.println(foods);
                     List<Integer> coffees = orderCoffee();
                     System.out.println(coffees);
-                    Order order = orderController.addOrder(id, foods, coffees);
+                    Order order = coffeeShopController.addOrder(id, foods, coffees);
                     System.out.println("Order added successfully!" + order);
 
                     break;
@@ -91,20 +82,20 @@ public class ClientUI {
             String name = scanner.nextLine();
 
             Client client = new Client(id, age, name);
-            clientController.addClient(client);
+            coffeeShopController.addClient(client);
     }
 
     public List<Integer> orderFood(){
         List<Integer> foods = new ArrayList<>();
         while(true){
-            foodController.listAllFoods();
+            coffeeShopController.listAllFoods();
             System.out.println("What food would you like to order? Enter the ID or press enter if you would like to stop ordering");
             String id = scanner.nextLine();
             if(id.isEmpty())
                 break;
             Integer intId = Integer.parseInt(id);
 
-            if(foodController.getFoodById(intId) != null){
+            if(coffeeShopController.getFoodById(intId) != null){
                 foods.add(intId);
             }
             else
@@ -119,13 +110,13 @@ public class ClientUI {
     public List<Integer> orderCoffee(){
         List<Integer> coffees = new ArrayList<>();
         while(true){
-            coffeeController.listAllCoffees();
+            coffeeShopController.listAllCoffees();
             System.out.println("What coffee would you like to order? Enter the ID or press enter if you would like to stop ordering");
             String id = scanner.nextLine();
             if(id.isEmpty())
                 break;
             Integer intId = Integer.parseInt(id);
-            if(coffeeController.getCoffeeById(intId) != null){
+            if(coffeeShopController.getCoffeeById(intId) != null){
                 coffees.add(intId);
             }
             else

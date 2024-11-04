@@ -17,29 +17,34 @@ public class Main {
         InMemoryRepository<Coffee> coffeeRepo = new InMemoryRepository<>();
         InMemoryRepository<Order> OrderRepo = new InMemoryRepository<>();
 
-        // Set up the service with the repository
-        AdminService adminService = new AdminService(adminRepo);
-        ClientService clientService = new ClientService(clientRepo, adminRepo);
-        FoodService foodService = new FoodService(foodRepo);
-        CoffeeService coffeeService = new CoffeeService(coffeeRepo);
-        OrderService OrderService = new OrderService(OrderRepo, foodService, coffeeService);
+        CoffeeShopService coffeeShopService = new CoffeeShopService(adminRepo,clientRepo,coffeeRepo,foodRepo,OrderRepo);
 
-        // Create the controller with the service
-        AdminController adminController = new AdminController(adminService);
-        ClientController clientController = new ClientController(clientService);
-        FoodController foodController = new FoodController(foodService);
-        CoffeeController coffeeController = new CoffeeController(coffeeService);
-        OrderController orderController = new OrderController(OrderService,clientController);
+        CoffeeShopController coffeeShopController = new CoffeeShopController(coffeeShopService);
+
+//        // Set up the service with the repository
+//        AdminService adminService = new AdminService(adminRepo);
+//        ClientService clientService = new ClientService(clientRepo, adminRepo);
+//        FoodService foodService = new FoodService(foodRepo);
+//        CoffeeService coffeeService = new CoffeeService(coffeeRepo);
+//        OrderService OrderService = new OrderService(OrderRepo, foodService, coffeeService);
+//
+//        // Create the controller with the service
+//        AdminController adminController = new AdminController(adminService);
+//        ClientController clientController = new ClientController(clientService);
+//        FoodController foodController = new FoodController(foodService);
+//        CoffeeController coffeeController = new CoffeeController(coffeeService);
+//        OrderController orderController = new OrderController(OrderService,clientController);
 
         // Create a Scanner instance
+        CoffeeShopController coffeeShopController2 = new CoffeeShopController(coffeeShopService);
         Scanner scanner = new Scanner(System.in);
 
         // Initialize the UI with the controller and Scanner
-        AdminUI adminUi = new AdminUI(adminController, clientController,coffeeController, foodController, scanner);
-        ClientUI clientUi = new ClientUI(clientController, coffeeController, foodController,orderController, scanner);
+        AdminUI adminUi = new AdminUI(coffeeShopController , scanner);
+        ClientUI clientUi = new ClientUI(coffeeShopController, scanner);
 
         // Initialize and start the main UI for login
-        UI mainUI = new UI(adminController, clientController, adminUi, clientUi);
+        UI mainUI = new UI(coffeeShopController, adminUi, clientUi);
         mainUI.start();
 
         // Close the scanner at the end of the application

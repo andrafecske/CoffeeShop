@@ -2,20 +2,19 @@ package Presentation;
 
 import Controller.AdminController;
 import Controller.ClientController;
+import Controller.CoffeeShopController;
 import Models.Admin;
 import Models.Client;
 
 import java.util.Scanner;
 
 public class UI {
-    private final AdminController adminController;
-    private final ClientController clientController;
+    private final CoffeeShopController coffeeShopController;
     private final AdminUI adminUI;
     private final ClientUI clientUI;
 
-    public UI(AdminController adminController, ClientController clientController, AdminUI adminUI, ClientUI clientUI) {
-        this.adminController = adminController;
-        this.clientController = clientController;
+    public UI(CoffeeShopController coffeeShopController, AdminUI adminUI, ClientUI clientUI) {
+        this.coffeeShopController = coffeeShopController;
         this.adminUI = adminUI;
         this.clientUI = clientUI;
     }
@@ -62,7 +61,7 @@ public class UI {
         }
 
         // Check for Admin login
-        Admin admin = adminController.getAdminById(id);
+        Admin admin = coffeeShopController.getAdminById(id);
         if (admin != null && admin.getName().equalsIgnoreCase(name)) {
             System.out.println("Welcome, Admin " + name + "!");
             adminUI.start();  // Run the Admin-specific UI operations
@@ -72,7 +71,7 @@ public class UI {
         }
 
         // Check for Client login
-        Client client = clientController.getClientById(id);
+        Client client = coffeeShopController.getClientById(id);
         if (client != null && client.getName().equalsIgnoreCase(name)) {
             System.out.println("Welcome, Client " + name + "!");
             clientUI.start(id);  // Run the Client-specific UI operations

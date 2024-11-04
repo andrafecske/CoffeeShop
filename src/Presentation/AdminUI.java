@@ -2,11 +2,8 @@ package Presentation;
 
 import java.util.Scanner;
 
-import Controller.ClientController;
-import Controller.CoffeeController;
-import Controller.FoodController;
+import Controller.*;
 import Models.Admin;
-import Controller.AdminController;
 import Models.Client;
 import Models.Coffee;
 import Models.Food;
@@ -15,17 +12,11 @@ import Utils.Role;
 import Utils.MilkType;
 
 public class AdminUI {
-    private final AdminController adminController;
-    private final ClientController clientController;
-    private final CoffeeController coffeeController;
-    private final FoodController foodController;
+    private final CoffeeShopController controller;
     private final Scanner scanner;
 
-    public AdminUI(AdminController adminController, ClientController clientController, CoffeeController coffeeController, FoodController foodController, Scanner scanner) {
-        this.adminController = adminController;
-        this.clientController = clientController;
-        this.coffeeController = coffeeController;
-        this.foodController = foodController;
+    public AdminUI(CoffeeShopController controller, Scanner scanner) {
+        this.controller = controller;
         this.scanner = scanner;
     }
 
@@ -87,7 +78,7 @@ public class AdminUI {
 
             switch (adminOption) {
                 case "1":
-                    adminController.listAllAdmins();
+                    controller.listAllAdmins();
                     break;
 
                 case "2":
@@ -129,7 +120,7 @@ public class AdminUI {
 
             switch (clientOption) {
                 case "1":
-                    clientController.listAllClients();
+                    controller.listAllClients();
                     break;
 
                 case "2":
@@ -165,7 +156,7 @@ public class AdminUI {
 
             switch (foodOption) {
                 case "1":
-                    foodController.listAllFoods();
+                    controller.listAllFoods();
                     break;
 
                 case "2":
@@ -173,7 +164,7 @@ public class AdminUI {
                     break;
 
                 case "3":
-                    coffeeController.listAllCoffees();
+                    controller.listAllCoffees();
                     break;
                 case "4":
                     addCoffee(scanner);
@@ -213,7 +204,7 @@ public class AdminUI {
 
             // Create a new Admin and add it using the controller
             Admin admin = new Admin(id, age, name, role);
-            adminController.addAdmin(admin);
+            controller.addAdmin(admin);
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter numbers for ID and age.");
@@ -227,7 +218,7 @@ public class AdminUI {
             int id = Integer.parseInt(scanner.nextLine());
 
             // Retrieve the existing Admin
-            Admin existingAdmin = adminController.getAdminById(id);
+            Admin existingAdmin = controller.getAdminById(id);
             if (existingAdmin == null) {
                 System.out.println("Admin with ID " + id + " not found.");
                 return;
@@ -265,7 +256,7 @@ public class AdminUI {
 
             // Update the Admin
             Admin updatedAdmin = new Admin(id, age, name, role);
-            adminController.updateAdmin(updatedAdmin);
+            controller.updateAdmin(updatedAdmin);
             System.out.println("Admin updated successfully.");
 
         } catch (NumberFormatException e) {
@@ -291,10 +282,10 @@ public class AdminUI {
             System.out.print("Enter the ID of the Admin to delete: ");
             int id = Integer.parseInt(scanner.nextLine());
 
-            Admin adminToDelete = adminController.getAdminById(id);
+            Admin adminToDelete = controller.getAdminById(id);
 
             if (adminToDelete != null) {
-                adminController.deleteAdmin(adminToDelete);  // Pass the Admin object to delete
+                controller.deleteAdmin(adminToDelete);  // Pass the Admin object to delete
                 System.out.println("Admin with ID " + id + " has been deleted.");
             } else {
                 System.out.println("Admin with ID " + id + " not found.");
@@ -316,7 +307,7 @@ public class AdminUI {
         String name = scanner.nextLine();
 
         Client client = new Client(id, age, name);
-        clientController.addClient(client);
+        controller.addClient(client);
     }
 
     private void addFood(Scanner scanner){
@@ -350,7 +341,7 @@ public class AdminUI {
         }
 
         Food food = new Food(id, price,points,name,type);
-        foodController.addFood(food);
+        controller.addFood(food);
         System.out.println("Food added successfully");
 
     }
@@ -394,7 +385,7 @@ public class AdminUI {
 
 
         Coffee coffee = new Coffee(id, price, points, name, containsCaffeine, milkType);
-        coffeeController.addCoffee(coffee);
+        controller.addCoffee(coffee);
 
 
     }
