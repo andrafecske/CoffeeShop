@@ -2,37 +2,34 @@ package Models;
 import java.util.List;
 
 public class Order implements HasID{
-    private Integer ID;
-    private int points, totalCost = 0;
-    private Client client;
+    private Integer ID, clientID;
+    private int points, totalCost;
+
     private  List<Product> products;
 
-    public Order(Integer orderID, int points, int totalCost, Client client, List<Product> products) {
+    public Order(Integer orderID, Integer clientID, List<Product> products) {
         this.ID = orderID;
-        this.points = points;
-        this.client = client;
+        this.clientID = clientID;
         this.products = products;
+        calculatePoints();
+        calculateTotalCost();
     }
     public int getPoints() {
         return points;
     }
-    public void setPoints(int points) {
-        this.points = points;
-    }
-    public int getTotalCost() {
+
+    public void calculateTotalCost() {
+        totalCost = 0;
         for(Product product: products){
             totalCost += product.getPrice();
         }
-        return totalCost;
     }
-    public void setTotalCost(int totalCost) {
-        this.totalCost = totalCost;
+
+    public Integer getClientID() {
+        return clientID;
     }
-    public Client getClient() {
-        return client;
-    }
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClient(Integer client) {
+        this.clientID = clientID;
     }
     public List<Product> getProducts() {
         return products;
@@ -44,8 +41,32 @@ public class Order implements HasID{
         this.ID = orderID;
     }
 
+    public void calculatePoints()
+    {
+        points = 0;
+        for(Product product: products){
+            points+= product.getPoints();
+        }
+    }
+
+    public int getTotalCost(){
+       return totalCost;
+    }
+
+
     @Override
     public Integer getId() {
         return ID;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ID=" + ID +
+                ", clientID=" + clientID +
+                ", points=" + points +
+                ", totalCost=" + totalCost +
+                ", products=" + products +
+                '}';
     }
 }

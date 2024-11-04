@@ -75,7 +75,7 @@ public class UI {
         Client client = clientController.getClientById(id);
         if (client != null && client.getName().equalsIgnoreCase(name)) {
             System.out.println("Welcome, Client " + name + "!");
-            clientUI.start();  // Run the Client-specific UI operations
+            clientUI.start(id);  // Run the Client-specific UI operations
 
             System.out.println("You have been logged out.");
             return;

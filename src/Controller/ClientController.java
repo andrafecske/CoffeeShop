@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Card;
 import Models.Client;
 import Service.ClientService;
 
@@ -32,5 +33,14 @@ public class ClientController {
 
     public Client getClientById(int id) {
         return clientService.getClientById(id); // Assumes this method exists in ClientService
+    }
+
+    public int changePoints(int clientId,int points) {
+        Client client = clientService.getClientById(clientId);
+        Card card = client.getCard();
+        card.setCurrentPoints(card.getCurrentPoints() + points);
+        card.setTotalPoints(card.getTotalPoints() + points);
+        return card.getCurrentPoints();
+
     }
 }
