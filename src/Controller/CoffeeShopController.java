@@ -80,6 +80,16 @@ public class CoffeeShopController {
 
     }
 
+    public void deleteClient(Client client) {
+        coffeeShopService.deleteClient(client);
+        //System.out.println("Client deleted successfully");
+    }
+
+    public void updateClient(Client client) {
+        coffeeShopService.updateClient(client);
+       // System.out.println("Client updated successfully");
+    }
+
     //coffee
 
 
@@ -98,6 +108,16 @@ public class CoffeeShopController {
             }
         }
 
+    }
+
+    public void deleteCoffee(Coffee coffee) {
+        coffeeShopService.deleteCoffee(coffee);
+        System.out.println("Coffee deleted successfully");
+    }
+
+    public void updateCoffee(Coffee coffee) {
+        coffeeShopService.updateCoffee(coffee);
+        System.out.println("Coffee updated successfully");
     }
 
     public Coffee getCoffeeById(int id) {
@@ -128,6 +148,14 @@ public class CoffeeShopController {
 
     public Food getFoodById(int id) {
         return coffeeShopService.getFoodById(id);
+    }
+
+    public void deleteFood(Food food) {
+        coffeeShopService.deleteFood(food);
+    }
+
+    public void updateFood(Food food) {
+        coffeeShopService.updateFood(food);
     }
 
     //order

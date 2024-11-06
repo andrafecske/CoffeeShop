@@ -123,6 +123,29 @@ public class CoffeeShopService {
         return clientRepo.read(id);
     }
 
+    public void deleteClient(Client client){
+        if(client == null){
+            System.out.println("Client is null");
+            return;
+        }
+        clientRepo.delete(client.getId());
+        System.out.println("Client deleted successfully");
+
+    }
+
+    public void updateClient(Client client){
+        if(client == null){
+            System.out.println("Client is null");
+            return;
+        }
+        Client exists = clientRepo.read(client.getId());
+        if (exists != null) {
+            clientRepo.update(client.getId(), client);
+        }else{
+            System.out.println("Client not found");
+        }
+    }
+
 
     //coffeeService
 
@@ -143,6 +166,29 @@ public class CoffeeShopService {
         return coffeeRepo.read(id);
     }
 
+    public void deleteCoffee(Coffee coffee){
+        if(coffee == null){
+            System.out.println("Coffee is null");
+            return;
+        }
+        coffeeRepo.delete(coffee.getId());
+    }
+
+    public void updateCoffee(Coffee coffee){
+        if(coffee == null){
+            System.out.println("Coffee is null");
+            return;
+        }
+        Coffee exists = coffeeRepo.read(coffee.getId());
+        if (exists != null) {
+            coffeeRepo.update(coffee.getId(), coffee);
+            System.out.println("Coffee updated successfully");
+        }else {
+            System.out.println("Coffee not found");
+        }
+
+    }
+
     //foodService
 
 
@@ -161,6 +207,28 @@ public class CoffeeShopService {
 
     public Food getFoodById(int id){
         return  foodRepo.read(id);
+    }
+
+    public void deleteFood(Food food){
+        if(food == null){
+            System.out.println("Food is null");
+            return;
+        }
+        foodRepo.delete(food.getId());
+    }
+
+    public void updateFood(Food food){
+        if(food == null){
+            System.out.println("Food is null");
+            return;
+        }
+        Food exists = foodRepo.read(food.getId());
+        if (exists != null) {
+            foodRepo.update(food.getId(), food);
+            System.out.println("Food updated successfully");
+        }else{
+            System.out.println("Food not found");
+        }
     }
 
 
