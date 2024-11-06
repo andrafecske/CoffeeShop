@@ -269,10 +269,60 @@ public class CoffeeShopService {
         order.calculatePoints();
     }
 
+    public void updateOrder(Order order) {
+        if (order == null) {
+            System.out.println("Order is null");
+            return;}
 
+            Order exists = orderRepo.read(order.getId());
+            if (exists != null) {
+                order.calculatePoints();
+                order.calculateTotalCost();
+                orderRepo.update(order.getId(), order);
+                System.out.println("Order updated successfully");
+            }else{
+                System.out.println("Order not found");
+        }
+    }
+
+    public void deleteOrder(Order order) {
+        if (order == null) {
+            System.out.println("Order is null");
+            return;
+        }
+        orderRepo.delete(order.getId());
+    }
+
+    public void getAllOrders(){
+        List<Order> orders = orderRepo.getAll();
+    }
+
+//    public Product getProductById(int productId) {
+//        for (Product product : products) {
+//            if (product.getId() == productId) {
+//                return product;
+//            }
+//        }
+//        return null; // Return null if no product is found with the given ID
+//    }
+
+//    public List<Food> getFoods(Order order) {
+//        List<Food> foods = new ArrayList<>();
+//        for (Product product : order.getProducts()) {
+//            if (product instanceof Food) {
+//                foods.add((Food) product); // Cast product to Food and add to the list
+//            }
+//        }
+//        return foods;
+//    }
 
 
 }
+
+
+
+
+
 
 
 

@@ -30,7 +30,8 @@ public class AdminUI {
                      1. Admin Management
                      2. Client Management
                      3. Food Management
-                     4. Exit
+                     4. View all orders ever
+                     5. Exit
                      """);
             System.out.print("Choose a category: ");
             String mainOption = scanner.nextLine();
@@ -49,6 +50,10 @@ public class AdminUI {
                     break;
 
                 case "4":
+                    viewOrders();
+                    break;
+
+                case "5":
                     continueLoop = false;
                     System.out.println("Exiting... Goodbye!");
                     break;
@@ -163,7 +168,8 @@ public class AdminUI {
                      6. Add coffee item
                      7. Update coffee item
                      8. Delete coffee item
-                     9. Back to main menu
+                   
+                     10. Back to main menu
                      """);
             System.out.print("Choose an option: ");
             String foodOption = scanner.nextLine();
@@ -197,6 +203,7 @@ public class AdminUI {
                 case "8":
                     deleteCoffee(scanner);
                     break;
+
                 case "9":
                     foodLoop = false;
                 default:
@@ -697,6 +704,10 @@ public class AdminUI {
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
         }
+    }
+
+    public void viewOrders(){
+        controller.viewOrders();
     }
 
 }

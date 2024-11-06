@@ -5,7 +5,10 @@ public class Order implements HasID{
     private Integer ID, clientID;
     private int points, totalCost;
 
-    private  List<Product> products;
+    private List<Product> products;
+
+//    private  List<Coffee> coffees;
+//    private  List<Food> foods;
 
     public Order(Integer orderID, Integer clientID, List<Product> products) {
         this.ID = orderID;
@@ -20,9 +23,16 @@ public class Order implements HasID{
 
     public void calculateTotalCost() {
         totalCost = 0;
-        for(Product product: products){
+//        for(Coffee coffee: coffees){
+//            totalCost += coffee.getPrice();
+//        }
+//        for(Food food: foods){
+//            totalCost += food.getPrice();
+//        }
+        for (Product product : products) {
             totalCost += product.getPrice();
         }
+
     }
 
     public Integer getClientID() {
@@ -31,12 +41,15 @@ public class Order implements HasID{
     public void setClient(Integer client) {
         this.clientID = clientID;
     }
+//    public List<Food> getFoods() {
+//        return foods;
+//    }
+//    public List<Coffee> getCoffees() {return coffees;}
+
     public List<Product> getProducts() {
         return products;
     }
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+
     public void setOrderID(Integer orderID) {
         this.ID = orderID;
     }
@@ -52,6 +65,8 @@ public class Order implements HasID{
     public int getTotalCost(){
        return totalCost;
     }
+
+
 
 
     @Override

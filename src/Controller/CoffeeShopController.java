@@ -3,6 +3,7 @@ package Controller;
 import Models.*;
 import Service.CoffeeShopService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoffeeShopController {
@@ -71,13 +72,20 @@ public class CoffeeShopController {
         return coffeeShopService.getClientById(id); // Assumes this method exists in ClientService
     }
 
-    public int changePoints(int clientId,int points) {
+    public int addPoints(int clientId,int points) {
         Client client = coffeeShopService.getClientById(clientId);
         Card card = client.getCard();
         card.setCurrentPoints(card.getCurrentPoints() + points);
         card.setTotalPoints(card.getTotalPoints() + points);
         return card.getCurrentPoints();
 
+    }
+
+    public void removePoints(int clientId,int points) {
+        Client client = coffeeShopService.getClientById(clientId);
+        Card card = client.getCard();
+        card.setCurrentPoints(card.getCurrentPoints() - points);
+        card.setTotalPoints(card.getTotalPoints() - points);
     }
 
     public void deleteClient(Client client) {
@@ -163,10 +171,92 @@ public class CoffeeShopController {
 
     public Order addOrder(Integer clientId, List<Integer> foodIds, List<Integer> coffeeIds) {
         Order order = coffeeShopService.addOrder(clientId, foodIds, coffeeIds);
-        int currPoints = changePoints(clientId,order.getPoints());
+        int currPoints = addPoints(clientId,order.getPoints());
         System.out.println("Your current points: " + currPoints);
         return order;
     }
 
-}
+    public void deleteOrder(Order order, Integer clientId) {
+        int pointsToDelete = order.getPoints();
+        coffeeShopService.deleteOrder(order);
+        removePoints(clientId,pointsToDelete);
+    }
+
+    public void updateOrder(Order order, Integer clientId) {
+        int prevPoints = order.getPoints();
+        coffeeShopService.updateOrder(order);
+        int currPoints = order.getPoints();
+        removePoints(clientId,prevPoints);
+        Client client = coffeeShopService.getClientById(clientId);
+        Card card = client.getCard();
+        card.setCurrentPoints(card.getCurrentPoints() + currPoints);
+        card.setTotalPoints(card.getTotalPoints() + currPoints);
+
+    }
+
+    public Order getOrderById(int id) {
+        return coffeeShopService.getOrderById(id);
+    }
+
+    public List<Food> getFoods(Order order) {
+        List<Food> foods = new ArrayList<>();
+        for (Product product : order.getProducts()) {
+            if (product instanceof Food) {
+                foods.add((Food) product); // Cast product to Food and add to the list
+            }
+        }
+        return foods;
+    }
+
+    public List<Coffee> getCoffees(Order order) {
+        List<Coffee> coffees = new ArrayList<>();
+        for (Product product : order.getProducts()) {
+            if (product instanceof Coffee) {
+                coffees.add((Coffee) product);
+            }
+        }return  coffees;
+
+    }
+
+//    public void removeFoodById(int foodid, Order order) {
+//        order.getProducts().removeIf(product -> product instanceof Food && product.getId() == foodid);
+//    }
+//    public void removeCoffeeById(int coffeeid, Order order){
+//        order.getProducts().removeIf(product -> product instanceof Coffee && product.getId() == coffeeid);
+//
+//        }
+
+    public boolean removeFoodById(int foodid, Order order) {
+        return order.getProducts().removeIf(product -> product instanceof Food && product.getId() == foodid);
+    }
+
+    public boolean removeCoffeeById(int coffeeid, Order order) {
+        return order.getProducts().removeIf(product -> product instanceof Coffee && product.getId() == coffeeid);
+    }
+
+    public void viewPoints(Integer clientId) {
+        Client client = coffeeShopService.getClientById(clientId);
+        System.out.println("Your current points: " + client.getCard().getCurrentPoints());
+    }
+
+    public void viewOrders(){
+        List<Order> orders = coffeeShopService.getOrders();
+        if(orders.isEmpty())
+            System.out.println("There are no orders");
+        else{
+            for (Order order : orders) {
+                System.out.println(order);
+            }
+        }
+
+    }
+
+    }
+
+
+
+
+
+
+
 
