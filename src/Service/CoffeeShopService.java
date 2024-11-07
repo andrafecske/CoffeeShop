@@ -16,16 +16,18 @@ public class CoffeeShopService {
     private final IRepository<Food> foodRepo;
     private IRepository<Order> orderRepo;
     private final IRepository<Offer> offerRepo;
+    private final IRepository<OfferOrder> offerOrderRepo;
 
     //admin service
 
-    public CoffeeShopService(IRepository<Admin> adminRepo, IRepository<Client> clientRepo, IRepository<Coffee> coffeeRepo, IRepository<Food> foodRepo, IRepository<Order> orderRepo, IRepository<Offer> offerRepo) {
+    public CoffeeShopService(IRepository<Admin> adminRepo, IRepository<Client> clientRepo, IRepository<Coffee> coffeeRepo, IRepository<Food> foodRepo, IRepository<Order> orderRepo, IRepository<Offer> offerRepo, IRepository<OfferOrder> offerOrderRepo) {
         this.adminRepo = adminRepo;
         this.clientRepo = clientRepo;
         this.coffeeRepo = coffeeRepo;
         this.foodRepo = foodRepo;
         this.orderRepo = orderRepo;
         this.offerRepo = offerRepo;
+        this.offerOrderRepo = offerOrderRepo;
         initializeRepositories();
     }
     private void initializeRepositories() {
@@ -254,13 +256,6 @@ public class CoffeeShopService {
         return order;
     }
 
-    private int generateOrderID() {
-        return (int) (Math.random() * 10000);  // Simplified for example purposes
-    }
-
-    private int generateOfferID() {
-        return (int) (Math.random() * 10000);  // Simplified for example purposes
-    }
 
 
     public List<Order> getOrders() {
@@ -299,9 +294,7 @@ public class CoffeeShopService {
         orderRepo.delete(order.getId());
     }
 
-    public void getAllOrders(){
-        List<Order> orders = orderRepo.getAll();
-    }
+    //OFFER OPERATIONS
 
    public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost) {
         int offerId = generateOfferID();
@@ -335,9 +328,41 @@ public class CoffeeShopService {
         offerRepo.delete(offer.getId());
    }
 
+   //OFFER ORDER OPERATIONS
+    public OfferOrder addOfferOrder (Integer offerId, Integer clientId){
+        Integer offerOrderId = generateOfferOrderID();
+        Offer offer = getOfferById(offerId);
+        Client client = getClientById(clientId);
+        if(client.getCard().getCurrentPoints()>=offer.pointCost)
+        {
+            OfferOrder offerOrder = new OfferOrder(offerOrderId, client, offer);
+            client.getCard().setCurrentPoints(client.getCard().getCurrentPoints()-offer.pointCost);
+            offerOrderRepo.create(offerOrder);
+            return offerOrder;
+        }
+        else {
+            System.out.println("Not sufficient points");
+            return null;
+        }
+    }
 
+
+    //UTILS
+    private int generateOrderID() {
+        return (int) (Math.random() * 10000);  // Simplified for example purposes
+    }
+
+    private int generateOfferID() {
+        return (int) (Math.random() * 10000);  // Simplified for example purposes
+    }
+
+    private int generateOfferOrderID(){
+        return (int) (Math.random() * 10000);
+    }
 
 }
+
+
 
 
 
