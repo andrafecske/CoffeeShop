@@ -13,7 +13,7 @@ public class ClientUI {
 
     private final CoffeeShopController coffeeShopController;
     private final Scanner scanner;
-    private Integer id;
+    private Integer id; //id of the client
     public ClientUI(CoffeeShopController coffeeShopController, Scanner scanner) {
         this.coffeeShopController = coffeeShopController;
         this.scanner = scanner;
@@ -33,7 +33,8 @@ public class ClientUI {
                     3. Update Order
                     4. Delete Order
                     5. View my points
-                    6. Exit
+                    6. Claim offers
+                    7. Exit
                     
                     """);
             System.out.println("Choose an option: ");
@@ -70,6 +71,15 @@ public class ClientUI {
                     break;
 
                 case "6":
+                    viewPoints();
+                    coffeeShopController.listAllOffers();
+                    System.out.println("Here are the available offers, enter ID of the one you want to use:");
+                    int offerID = Integer.parseInt(scanner.nextLine());
+                    coffeeShopController.addOfferOrder(offerID, id);
+                    viewPoints();
+                    break;
+
+                case "7":
                     continueLoop = false;
 
             }
@@ -174,7 +184,6 @@ public class ClientUI {
 
             List<Food> additionalFoods;
             if (foodInput.isEmpty()) {
-//                additionalFoods = coffeeShopController.getFoods(existingOrder);
                 System.out.println("No new foods added");// Keep existing products
             } else {
                 additionalFoods = new ArrayList<>();
@@ -200,7 +209,6 @@ public class ClientUI {
 
             List<Coffee> additionalCoffees;
             if (foodInput.isEmpty()) {
-//                additionalFoods = coffeeShopController.getFoods(existingOrder);
                 System.out.println("No new coffees added");// Keep existing products
             } else {
                 additionalCoffees = new ArrayList<>();
@@ -260,35 +268,6 @@ public class ClientUI {
                 }
             }
 
-//            System.out.print("Enter the IDs of Foods to remove (comma-separated), or press Enter to skip: ");
-//            String foodRemoveInput = scanner.nextLine();
-//            if (!foodRemoveInput.isEmpty()) {
-//                String[] foodIds = foodRemoveInput.split(",");
-//                for (String foodId : foodIds) {
-//                    try {
-//                        int foodIdInt = Integer.parseInt(foodId.trim());
-//                        coffeeShopController.removeFoodById(foodIdInt, existingOrder);
-//                        System.out.println("Food with ID " + foodIdInt + " removed.");
-//                    } catch (NumberFormatException e) {
-//                        System.out.println("Invalid Food ID: " + foodId + ". Skipping.");
-//                    }
-//                }
-//            }
-//
-//            System.out.print("Enter the IDs of Coffees to remove (comma-separated), or press Enter to skip: ");
-//            String coffeeRemoveInput = scanner.nextLine();
-//            if (!coffeeRemoveInput.isEmpty()) {
-//                String[] coffeeIds = coffeeRemoveInput.split(",");
-//                for (String coffeeId : coffeeIds) {
-//                    try {
-//                        int coffeeIdInt = Integer.parseInt(coffeeId.trim());
-//                        coffeeShopController.removeCoffeeById(coffeeIdInt, existingOrder);
-//                        System.out.println("Coffee with ID " + coffeeId + " removed.");
-//                    } catch (NumberFormatException e) {
-//                        System.out.println("Invalid Coffee ID: " + coffeeId + ". Skipping.");
-//                    }
-//                }
-//            }
 
             coffeeShopController.updateOrder(existingOrder, existingOrder.getClientID());
             System.out.println("Order updated successfully.");
@@ -305,6 +284,8 @@ public class ClientUI {
         public void viewPoints(){
         coffeeShopController.viewPoints(id);
         }
+
+
 }
 
 

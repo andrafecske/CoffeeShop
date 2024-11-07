@@ -628,23 +628,8 @@ public class AdminUI {
             System.out.println("Invalid input. Please enter a valid milk type.");
             return;
         }
-//            System.out.print("Enter new MilkType (or press Enter to keep '" + existingCoffee.getMilkType() + "'): ");
-//            String milkTypeInput = scanner.nextLine();
-//            MilkType milkType;
-//            if (milkTypeInput.isEmpty()) {
-//                milkType = (MilkType) existingCoffee.getMilkType();
-//            } else {
-//                try {
-//                    milkType = MilkType.valueOf(milkTypeInput.toUpperCase());
-//                } catch (IllegalArgumentException e) {
-//                    System.out.println("Invalid input. Please enter a valid milk type (WHOLE, SKIM, SOY, ALMOND, OAT, NONE).");
-//                    return;
-//                }
-//            }
 
 
-
-            // Update the Admin
             Coffee updatedCoffee = new Coffee(id,price,points,name,containsCaffeine,milkType);
             controller.updateCoffee(updatedCoffee);
             System.out.println("Coffee updated successfully.");
@@ -726,24 +711,6 @@ public class AdminUI {
                     return;
                 }
 
-
-
-//            System.out.print("Enter FoodType (SNACK/SANDWICH/DESSERT/MEAL) (or press Enter to keep ': " + existingFood.getFoodType());
-//            String typeInput = scanner.nextLine();
-//            FoodType type= (FoodType) existingFood.getFoodType();
-//            if("SNACK".equalsIgnoreCase(typeInput)) {
-//                type = FoodType.SNACK;
-//            }else if("SANDWICH".equalsIgnoreCase(typeInput)) {
-//                type = FoodType.SANDWICH;
-//            } else if ("DESSERT".equalsIgnoreCase(typeInput)) {
-//                type = FoodType.DESSERT;
-//            } else if ("MEAL".equalsIgnoreCase(typeInput)) {
-//                type = FoodType.MEAL;
-//            }
-//            else{
-//                System.out.println("Invalid input. Please enter a valid food type.");
-//                return;
-//            }
 
 
             // Update the Admin

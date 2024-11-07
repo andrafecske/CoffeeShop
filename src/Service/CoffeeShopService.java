@@ -123,6 +123,10 @@ public class CoffeeShopService {
         return false;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public Client getClientById(int id){
         return clientRepo.read(id);
     }

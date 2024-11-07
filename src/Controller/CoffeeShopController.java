@@ -218,13 +218,7 @@ public class CoffeeShopController {
 
     }
 
-//    public void removeFoodById(int foodid, Order order) {
-//        order.getProducts().removeIf(product -> product instanceof Food && product.getId() == foodid);
-//    }
-//    public void removeCoffeeById(int coffeeid, Order order){
-//        order.getProducts().removeIf(product -> product instanceof Coffee && product.getId() == coffeeid);
-//
-//        }
+
 
     public boolean removeFoodById(int foodid, Order order) {
         return order.getProducts().removeIf(product -> product instanceof Food && product.getId() == foodid);
@@ -268,6 +262,15 @@ public class CoffeeShopController {
             }
         }
     }
+
+    //OFFER ORDER OPERATIONS
+
+    public OfferOrder addOfferOrder(Integer offerId, Integer clientId){
+        return coffeeShopService.addOfferOrder(offerId, clientId);
+    }
+
+
+    //UTILS
 
     public void deleteOffer(Offer offer) {
         coffeeShopService.deleteOffer(offer);
