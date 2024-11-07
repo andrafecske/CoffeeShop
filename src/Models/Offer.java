@@ -32,7 +32,7 @@ public class Offer implements HasID{
     }
 
     public String toString() {
-        return "Offer [offerID=" + offerID + ", products=" + products + ", pointCost=";
+        return "Offer [offerID=" + offerID + ", products=" + products + ", pointCost=" + pointCost + "]";
     }
 
     @Override

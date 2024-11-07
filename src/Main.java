@@ -16,8 +16,9 @@ public class Main {
         InMemoryRepository<Food> foodRepo = new InMemoryRepository<>();
         InMemoryRepository<Coffee> coffeeRepo = new InMemoryRepository<>();
         InMemoryRepository<Order> OrderRepo = new InMemoryRepository<>();
+        InMemoryRepository<Offer> OfferRepo = new InMemoryRepository<>();
 
-        CoffeeShopService coffeeShopService = new CoffeeShopService(adminRepo,clientRepo,coffeeRepo,foodRepo,OrderRepo);
+        CoffeeShopService coffeeShopService = new CoffeeShopService(adminRepo,clientRepo,coffeeRepo,foodRepo,OrderRepo,OfferRepo);
 
         CoffeeShopController coffeeShopController = new CoffeeShopController(coffeeShopService);
 

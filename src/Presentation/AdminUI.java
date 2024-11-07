@@ -1,12 +1,11 @@
 package Presentation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import Controller.*;
-import Models.Admin;
-import Models.Client;
-import Models.Coffee;
-import Models.Food;
+import Models.*;
 import Utils.FoodType;
 import Utils.Role;
 import Utils.MilkType;
@@ -31,7 +30,8 @@ public class AdminUI {
                      2. Client Management
                      3. Food Management
                      4. View all orders ever
-                     5. Exit
+                     5. Offer Management 
+                     6. Exit
                      """);
             System.out.print("Choose a category: ");
             String mainOption = scanner.nextLine();
@@ -54,6 +54,10 @@ public class AdminUI {
                     break;
 
                 case "5":
+                    manageOffers(scanner);
+                    break;
+
+                case "6":
                     continueLoop = false;
                     System.out.println("Exiting... Goodbye!");
                     break;
@@ -209,6 +213,54 @@ public class AdminUI {
                 default:
                     System.out.println("Invalid option. Please try again.");
                     break;
+            }
+        }
+    }
+
+    private void manageOffers(Scanner scanner) {
+        boolean offerLoop = true;
+        while (offerLoop) {
+            System.out.println("""
+                    Offer Management
+                    
+                    1. View all offers
+                    2. Add offer
+                    3. Delete offer
+                    
+                    4. Back to main menu""");
+
+            System.out.print("Choose an option: ");
+            String offerOption = scanner.nextLine();
+
+            switch (offerOption) {
+                case "1":
+                    viewOffers();
+                    break;
+
+                case "2":
+                    List<Integer> foods = offerFood(scanner);
+                    System.out.println(foods);
+                    List<Integer> coffees = offerCoffee(scanner);
+                    System.out.println(coffees);
+                    System.out.println("How many points does this offer cost? ");
+                    int points = Integer.parseInt(scanner.nextLine());
+                    Offer offer = controller.addOffer(foods, coffees, points);
+                    System.out.println("Offer added successfully!" + offer);
+                    break;
+
+                case "3":
+                    System.out.println("Current active offers: ");
+                    viewOffers();
+                    deleteOffer(scanner);
+                    break;
+
+                case "4":
+                    offerLoop = false;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
+
             }
         }
     }
@@ -708,6 +760,72 @@ public class AdminUI {
 
     public void viewOrders(){
         controller.viewOrders();
+    }
+
+    public void viewOffers(){
+        controller.listAllOffers();
+    }
+
+    public List<Integer> offerFood(Scanner scanner) {
+        List<Integer> foods = new ArrayList<>();
+        while(true){
+            controller.listAllFoods();
+            System.out.println("What food would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
+            String id = scanner.nextLine();
+            if(id.isEmpty())
+                break;
+            Integer intId = Integer.parseInt(id);
+
+            if(controller.getFoodById(intId) != null){
+                foods.add(intId);
+            }
+            else
+            {
+                System.out.println("Invalid ID");
+            }
+
+        }
+        return foods;
+    }
+
+    public List<Integer> offerCoffee(Scanner scanner) {
+        List<Integer> coffees = new ArrayList<>();
+        while(true){
+            controller.listAllCoffees();
+            System.out.println("What coffee would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
+            String id = scanner.nextLine();
+            if(id.isEmpty())
+                break;
+            Integer intId = Integer.parseInt(id);
+            if(controller.getCoffeeById(intId) != null){
+                coffees.add(intId);
+            }
+            else
+            {
+                System.out.println("Invalid ID");
+            }
+        }
+        return coffees;
+
+    }
+
+    private void deleteOffer(Scanner scanner) {
+        try {
+            System.out.print("Enter the ID of the Offer to delete: ");
+            int id = Integer.parseInt(scanner.nextLine());
+
+            Offer offerToDelete = controller.getOfferById(id);
+
+            if (offerToDelete != null) {
+                controller.deleteOffer(offerToDelete);  // Pass the Admin object to delete
+                System.out.println("Offer with ID " + id + " has been deleted.");
+            } else {
+                System.out.println("Offer with ID " + id + " not found.");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number for ID.");
+        }
     }
 
 }

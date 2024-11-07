@@ -15,15 +15,17 @@ public class CoffeeShopService {
     private final IRepository<Coffee> coffeeRepo;
     private final IRepository<Food> foodRepo;
     private IRepository<Order> orderRepo;
+    private final IRepository<Offer> offerRepo;
 
     //admin service
 
-    public CoffeeShopService(IRepository<Admin> adminRepo, IRepository<Client> clientRepo, IRepository<Coffee> coffeeRepo, IRepository<Food> foodRepo, IRepository<Order> orderRepo) {
+    public CoffeeShopService(IRepository<Admin> adminRepo, IRepository<Client> clientRepo, IRepository<Coffee> coffeeRepo, IRepository<Food> foodRepo, IRepository<Order> orderRepo, IRepository<Offer> offerRepo) {
         this.adminRepo = adminRepo;
         this.clientRepo = clientRepo;
         this.coffeeRepo = coffeeRepo;
         this.foodRepo = foodRepo;
         this.orderRepo = orderRepo;
+        this.offerRepo = offerRepo;
         initializeRepositories();
     }
     private void initializeRepositories() {
@@ -256,6 +258,10 @@ public class CoffeeShopService {
         return (int) (Math.random() * 10000);  // Simplified for example purposes
     }
 
+    private int generateOfferID() {
+        return (int) (Math.random() * 10000);  // Simplified for example purposes
+    }
+
 
     public List<Order> getOrders() {
         return orderRepo.getAll();
@@ -297,24 +303,38 @@ public class CoffeeShopService {
         List<Order> orders = orderRepo.getAll();
     }
 
-//    public Product getProductById(int productId) {
-//        for (Product product : products) {
-//            if (product.getId() == productId) {
-//                return product;
-//            }
-//        }
-//        return null; // Return null if no product is found with the given ID
-//    }
+   public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost) {
+        int offerId = generateOfferID();
 
-//    public List<Food> getFoods(Order order) {
-//        List<Food> foods = new ArrayList<>();
-//        for (Product product : order.getProducts()) {
-//            if (product instanceof Food) {
-//                foods.add((Food) product); // Cast product to Food and add to the list
-//            }
-//        }
-//        return foods;
-//    }
+       List<Product> products = new ArrayList<>();
+       for (Integer foodID : foodIds) {
+           Food food = getFoodById(foodID);
+           products.add(food);
+       }
+       for (Integer coffeeID : coffeeIds) {
+           Coffee coffee = getCoffeeById(coffeeID);
+           products.add(coffee);
+       }
+       Offer offer = new Offer(offerId, products, pointCost);
+        offerRepo.create(offer);
+        return offer;
+   }
+
+   public Offer getOfferById(Integer id) {
+        return offerRepo.read(id);
+   }
+
+   public List<Offer> getAllOffers() {
+        return offerRepo.getAll();
+   }
+
+   public void deleteOffer(Offer offer) {
+        if (offer == null) {
+            System.out.println("Offer is null");
+        }
+        offerRepo.delete(offer.getId());
+   }
+
 
 
 }

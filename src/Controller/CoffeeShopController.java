@@ -251,7 +251,33 @@ public class CoffeeShopController {
 
     }
 
+    public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost) {
+        return coffeeShopService.addOffer(foodIds, coffeeIds, pointCost);
+
     }
+
+    public void listAllOffers() {
+        List<Offer> offers = coffeeShopService.getAllOffers();
+        if(offers.isEmpty()) {
+            System.out.println("No offer found");
+        }
+        else {
+            System.out.println("Offer list:");
+            for(Offer offer : offers) {
+                System.out.println(offer);
+            }
+        }
+    }
+
+    public void deleteOffer(Offer offer) {
+        coffeeShopService.deleteOffer(offer);
+    }
+
+
+    public Offer getOfferById(int id) {
+        return coffeeShopService.getOfferById(id);
+    }
+}
 
 
 
