@@ -3,6 +3,7 @@ package Presentation;
 import Controller.CoffeeShopController;
 import Models.Admin;
 import Models.Client;
+import Utils.Role;
 
 import java.util.Scanner;
 
@@ -62,7 +63,12 @@ public class UI {
         Admin admin = coffeeShopController.getAdminById(id);
         if (admin != null && admin.getName().equalsIgnoreCase(name)) {
             System.out.println("Welcome, Admin " + name + "!");
-            adminUI.start();  // Run the Admin-specific UI operations
+            if(admin.getRole().equals(Role.Manager))
+                adminUI.start();  // Run the Admin-specific UI operations
+            if(admin.getRole().equals(Role.ProductManager))
+                adminUI.startFoodManager();
+            else
+                adminUI.startClientManager();
 
             System.out.println("You have been logged out.");
             return;

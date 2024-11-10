@@ -31,25 +31,35 @@ public class CoffeeShopService {
         initializeRepositories();
     }
     private void initializeRepositories() {
-        Admin admin1 = new Admin(1, 21, "Sara", Role.Manager);
+        Admin admin1 = new Admin(1, 21, "Iulia", Role.Manager);
         Admin admin2 = new Admin(2, 30, "Sara", Role.Manager);
+        Admin admin3 = new Admin(3, 25, "Mimi", Role.ProductManager);
+        Admin admin4 = new Admin(4, 23, "Hannah", Role.ClientManager);
         adminRepo.create(admin1);
         adminRepo.create(admin2);
+        adminRepo.create(admin3);
+        adminRepo.create(admin4);
 
         Client client1 = new Client(1, 21,"Maria Nastase");
         Client client2 = new Client(2, 22,"Luana Eram");
+        Client client3 = new Client(3, 23,"Elena Nicolae");
         clientRepo.create(client1);
         clientRepo.create(client2);
+        clientRepo.create(client3);
 
         Coffee coffee1 = new Coffee(1, 23, 100, "Pumpkin Spice Latte", true, MilkType.WHOLE);
         Coffee coffe2 = new Coffee(2, 20, 89, "Caramel Large Latte", true, MilkType.WHOLE);
+        Coffee coffee3 = new Coffee(3, 24, 40, "Oat Milk Latte", true, MilkType.OAT);
         coffeeRepo.create(coffee1);
         coffeeRepo.create(coffe2);
+        coffeeRepo.create(coffee3);
 
         Food food1 = new Food(1, 20, 50, "Chicken Sandwich", FoodType.SANDWICH);
         Food food2 = new Food(2, 26, 80, "Chickpea Salad", FoodType.MEAL);
+        Food food3 = new Food(3, 17, 60, "Caramel cookies", FoodType.DESSERT);
         foodRepo.create(food1);
         foodRepo.create(food2);
+        foodRepo.create(food3);
     }
 
     public void addAdmin(Admin admin) {
