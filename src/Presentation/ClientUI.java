@@ -34,7 +34,8 @@ public class ClientUI {
                     4. Delete Order
                     5. View my points
                     6. Claim offers
-                    7. Exit
+                    7. View your orders
+                    8. Exit
                     
                     """);
             System.out.println("Choose an option: ");
@@ -79,27 +80,18 @@ public class ClientUI {
                     viewPoints();
                     break;
 
-                case "7":
+                case"7":
+                    viewOrders();
+                    break;
+
+                case "8":
                     continueLoop = false;
+                    break;
 
             }
         }
     }
 
-
-
-    private void addClient(Scanner scanner){
-            System.out.println("Enter Client ID:");
-            int id = Integer.parseInt(scanner.nextLine());
-
-            System.out.println("Enter Age:");
-            int age = Integer.parseInt(scanner.nextLine());
-            System.out.println("Enter Name:");
-            String name = scanner.nextLine();
-
-            Client client = new Client(id, age, name);
-            coffeeShopController.addClient(client);
-    }
 
     public List<Integer> orderFood(){
         List<Integer> foods = new ArrayList<>();
@@ -165,6 +157,7 @@ public class ClientUI {
     private void updateOrder(Scanner scanner){
         try {
             System.out.print("Enter the ID of the Order to update: ");
+            viewOrders();
             int id = Integer.parseInt(scanner.nextLine());
 
             // Retrieve the existing Admin
@@ -201,6 +194,10 @@ public class ClientUI {
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid product ID: " + productId + ". Skipping.");
                     }
+
+                }
+                if(!additionalFoods.isEmpty()) {
+                    existingOrder.getProducts().addAll(additionalFoods);
                 }
             }
 
@@ -208,7 +205,7 @@ public class ClientUI {
             String coffeeInput = scanner.nextLine();
 
             List<Coffee> additionalCoffees;
-            if (foodInput.isEmpty()) {
+            if (coffeeInput.isEmpty()) {
                 System.out.println("No new coffees added");// Keep existing products
             } else {
                 additionalCoffees = new ArrayList<>();
@@ -227,7 +224,11 @@ public class ClientUI {
                         System.out.println("Invalid product ID: " + productId + ". Skipping.");
                     }
                 }
+             if(!additionalCoffees.isEmpty()){
+                    existingOrder.getProducts().addAll(additionalCoffees);
+                }
             }
+
 
             System.out.print("Enter the IDs of Foods to remove (comma-separated), or press Enter to skip: ");
             String foodRemoveInput = scanner.nextLine();
@@ -271,6 +272,7 @@ public class ClientUI {
 
             coffeeShopController.updateOrder(existingOrder, existingOrder.getClientID());
             System.out.println("Order updated successfully.");
+            System.out.println(existingOrder);
 
 
         } catch (NumberFormatException e) {
@@ -279,10 +281,19 @@ public class ClientUI {
             System.out.println("Invalid role input. Please enter a valid role.");
         }
 
+
         }
 
         public void viewPoints(){
         coffeeShopController.viewPoints(id);
+        }
+
+        public void viewOrders(){
+            List<Order> orders = coffeeShopController.getAllOrders();
+            for(Order order : orders){
+                if(order.getClientID().equals(id))
+                    System.out.println(order);
+            }
         }
 
 

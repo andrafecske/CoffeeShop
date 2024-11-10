@@ -30,7 +30,7 @@ public class AdminUI {
                      2. Client Management
                      3. Food Management
                      4. View all orders ever
-                     5. Offer Management 
+                     5. Offer Management
                      6. Exit
                      """);
             System.out.print("Choose a category: ");
@@ -703,7 +703,7 @@ public class AdminUI {
 
             System.out.print("Enter FoodType (SNACK/SANDWICH/DESSERT/MEAL) (or press Enter to keep '" + existingFood.getFoodType() + "'): ");
             String typeInput = scanner.nextLine();
-            FoodType type = (FoodType) existingFood.getFoodType();
+            FoodType type;
                 try {
                     type = FoodType.valueOf(typeInput.toUpperCase());
                 } catch (IllegalArgumentException e) {
@@ -793,6 +793,11 @@ public class AdminUI {
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a number for ID.");
         }
+    }
+
+
+    public void startFoodManager(){
+
     }
 
 }

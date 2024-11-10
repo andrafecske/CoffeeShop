@@ -66,8 +66,29 @@ public class Order implements HasID{
        return totalCost;
     }
 
+    public Integer getID() {
+        return ID;
+    }
 
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 
+    public void setClientID(Integer clientID) {
+        this.clientID = clientID;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     @Override
     public Integer getId() {

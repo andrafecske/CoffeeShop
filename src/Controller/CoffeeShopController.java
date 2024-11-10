@@ -245,6 +245,10 @@ public class CoffeeShopController {
 
     }
 
+    public List<Order> getAllOrders(){
+        return coffeeShopService.getOrders();
+    }
+
     public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost) {
         return coffeeShopService.addOffer(foodIds, coffeeIds, pointCost);
 
