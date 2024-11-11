@@ -58,6 +58,6 @@ public class Food extends Product {
                 ", price=" + price +
                 ", name='" + name + '\'' +
                 ", FoodType=" + FoodType +
-                '}';
+                '}' + '\n';
     }
 }

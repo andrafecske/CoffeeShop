@@ -45,7 +45,7 @@ public class ClientUI {
                 case "1":
                     System.out.println("Foods in the menu:");
                      coffeeShopController.listAllFoods();
-                     System.out.println("Coffe menu:");
+                     System.out.println("Coffee menu:");
                      coffeeShopController.listAllCoffees();
                      break;
 

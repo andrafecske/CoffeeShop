@@ -4,7 +4,7 @@ package Models;
  * The {@code Person} class represents a generic person with an ID, age, and name.
  * This class implements the {@code HasID} interface, which provides a method to retrieve the unique ID of the person.
  */
-public class Person implements HasID {
+abstract class Person implements HasID {
 
     /**
      * The unique identifier for this person.

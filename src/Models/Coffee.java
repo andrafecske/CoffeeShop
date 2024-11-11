@@ -84,6 +84,6 @@ public class Coffee extends Product {
                 ", points=" + points +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                '}';
+                '}'+'\n';
     }
 }
