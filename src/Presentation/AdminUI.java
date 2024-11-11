@@ -510,6 +510,13 @@ import Utils.MilkType;
         controller.addCoffee(coffee);
     }
 
+        /**
+         * Deletes an existing coffee item from the system by prompting the user for the coffee's ID.
+         * If the coffee item is found, it is removed from the system; otherwise, an appropriate message is displayed.
+         * Handles invalid ID input gracefully.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void deleteCoffee(Scanner scanner){
         try {
             System.out.print("Enter the ID of the Coffee to delete: ");
@@ -530,6 +537,13 @@ import Utils.MilkType;
 
     }
 
+        /**
+         * Updates the details of an existing client by prompting the user for the client's ID, age, and name.
+         * Allows the user to retain the current values by pressing Enter without typing new information.
+         * If the client ID is invalid, an appropriate message is displayed.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void updateClient(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the Client to update: ");
@@ -574,6 +588,13 @@ import Utils.MilkType;
         }
     }
 
+        /**
+         * Deletes an existing client from the system by prompting the user for the client's ID.
+         * If the client is found, it is removed from the system; otherwise, an appropriate message is displayed.
+         * Handles invalid ID input gracefully.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void deleteClient(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the Client to delete: ");
@@ -593,6 +614,13 @@ import Utils.MilkType;
         }
     }
 
+        /**
+         * Updates the details of an existing coffee item by prompting the user for the coffee's ID, price, points,
+         * name, caffeine content, and milk type. The user can choose to retain the current values by pressing Enter
+         * without providing new input. If the coffee item with the given ID is not found, an appropriate message is displayed.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void updateCoffee(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the coffee to update: ");
@@ -674,6 +702,13 @@ import Utils.MilkType;
         }
     }
 
+        /**
+         * Deletes an existing food item from the system by prompting the user for the food's ID.
+         * If the food item is found, it is removed from the system; otherwise, an appropriate message is displayed.
+         * Handles invalid ID input gracefully.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void deleteFood(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the Food to delete: ");
@@ -693,6 +728,13 @@ import Utils.MilkType;
         }
     }
 
+        /**
+         * Updates an existing food item in the system by prompting the user for the food's ID and new values.
+         * If the food item is found, its details can be updated; otherwise, an error message is displayed.
+         * Handles invalid input for price, points, and food type, ensuring valid data is provided before updating.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void updateFood(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the food to update: ");
@@ -766,6 +808,14 @@ import Utils.MilkType;
         controller.listAllOffers();
     }
 
+        /**
+         * Allows the user to select food items to add to an offer by entering their IDs.
+         * The user can continue adding foods until they press Enter without entering an ID.
+         * After each input, the method checks if the food ID exists, and if valid, adds it to the list.
+         *
+         * @param scanner The Scanner used to read user input.
+         * @return A list of food IDs that the user selected for the offer.
+         */
     public List<Integer> offerFood(Scanner scanner) {
         List<Integer> foods = new ArrayList<>();
         while(true){
@@ -788,6 +838,14 @@ import Utils.MilkType;
         return foods;
     }
 
+        /**
+         * Allows the user to select coffee items to add to an offer by entering their IDs.
+         * The user can continue adding coffees until they press Enter without entering an ID.
+         * After each input, the method checks if the coffee ID exists, and if valid, adds it to the list.
+         *
+         * @param scanner The Scanner used to read user input.
+         * @return A list of coffee IDs that the user selected for the offer.
+         */
     public List<Integer> offerCoffee(Scanner scanner) {
         List<Integer> coffees = new ArrayList<>();
         while(true){
@@ -809,6 +867,13 @@ import Utils.MilkType;
 
     }
 
+        /**
+         * Deletes an offer based on the offer ID provided by the user.
+         * Prompts the user to enter the ID of the offer to delete. If the offer exists,
+         * it is deleted. If the offer ID does not exist, an error message is displayed.
+         *
+         * @param scanner The Scanner object used to read user input.
+         */
     private void deleteOffer(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the Offer to delete: ");
