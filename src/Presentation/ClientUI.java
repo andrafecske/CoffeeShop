@@ -92,7 +92,15 @@ public class ClientUI {
         }
     }
 
-
+    /**
+     * Allows the client to order food items from the coffee shop menu.
+     * The method repeatedly lists all available foods and prompts the client
+     * to enter the ID of the food they would like to order. The client can
+     * add multiple food items to their order. The client can stop ordering
+     * by pressing Enter without entering a food ID.
+     *
+     * @return A list of food IDs that the client has selected to order.
+     */
     public List<Integer> orderFood(){
         List<Integer> foods = new ArrayList<>();
         while(true){
@@ -115,6 +123,15 @@ public class ClientUI {
         return foods;
     }
 
+    /**
+     * Allows the client to order coffee items from the coffee shop menu.
+     * The method repeatedly lists all available coffees and prompts the client
+     * to enter the ID of the coffee they would like to order. The client can
+     * add multiple coffee items to their order. The client can stop ordering
+     * by pressing Enter without entering a coffee ID.
+     *
+     * @return A list of coffee IDs that the client has selected to order.
+     */
     public List<Integer> orderCoffee(){
         List<Integer> coffees = new ArrayList<>();
         while(true){
@@ -135,6 +152,14 @@ public class ClientUI {
         return coffees;
     }
 
+    /**
+     * Allows the client to delete an existing order by entering the order ID.
+     * The method retrieves the order from the coffee shop controller by ID
+     * and deletes it. If the order is found, it will be deleted; otherwise,
+     * an error message will be displayed.
+     *
+     * @param scanner The scanner object used to read input from the client.
+     */
     private void deleteOrder(Scanner scanner){
         try {
             System.out.print("Enter the ID of the Order to delete: ");
@@ -154,6 +179,16 @@ public class ClientUI {
         }
     }
 
+    /**
+     * Allows the client to update an existing order by providing the order ID.
+     * The method displays the current products in the order, and then prompts
+     * the client to add or remove foods and coffees from the order.
+     *
+     * It ensures that only valid food and coffee IDs are added or removed.
+     * After making changes, the order is updated and displayed.
+     *
+     * @param scanner The scanner object used to read input from the client.
+     */
     private void updateOrder(Scanner scanner){
         try {
             System.out.print("Enter the ID of the Order to update: ");
@@ -276,18 +311,31 @@ public class ClientUI {
 
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a valid number for age.");
+            System.out.println("Invalid input. Please enter a valid number.");
         } catch (IllegalArgumentException e) {
-            System.out.println("Invalid role input. Please enter a valid role.");
+            System.out.println("Invalid input.");
         }
 
 
         }
 
+    /**
+     * Displays the current points of the client.
+     *
+     * This method calls the controller's `viewPoints` method, passing the current
+     * client's ID, to retrieve and display the number of points the client has earned.
+     */
         public void viewPoints(){
         coffeeShopController.viewPoints(id);
         }
 
+    /**
+     * Displays all the orders placed by the current client.
+     * The method retrieves the list of all orders and filters them based on the
+     * client's ID, showing only the orders that belong to the client.
+     *
+     * It prints each order in the console.
+     */
         public void viewOrders(){
             List<Order> orders = coffeeShopController.getAllOrders();
             for(Order order : orders){
