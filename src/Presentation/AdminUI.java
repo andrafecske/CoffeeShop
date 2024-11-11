@@ -10,20 +10,20 @@ import Utils.FoodType;
 import Utils.Role;
 import Utils.MilkType;
 
-public class AdminUI {
-    private final CoffeeShopController controller;
-    private final Scanner scanner;
+    public class AdminUI {
+        private final CoffeeShopController controller;
+        private final Scanner scanner;
 
-    public AdminUI(CoffeeShopController controller, Scanner scanner) {
-        this.controller = controller;
-        this.scanner = scanner;
-    }
+        public AdminUI(CoffeeShopController controller, Scanner scanner) {
+            this.controller = controller;
+            this.scanner = scanner;
+        }
 
-    public void start() {
-        boolean continueLoop = true;
+        public void start() {
+            boolean continueLoop = true;
 
-        while (continueLoop) {
-            System.out.println("""
+            while (continueLoop) {
+                System.out.println("""
                      Coffee Shop Management System
                      
                      1. Admin Management
@@ -33,47 +33,47 @@ public class AdminUI {
                      5. Offer Management
                      6. Exit
                      """);
-            System.out.print("Choose a category: ");
-            String mainOption = scanner.nextLine();
+                System.out.print("Choose a category: ");
+                String mainOption = scanner.nextLine();
 
-            switch (mainOption) {
-                case "1":
-                    manageAdmins(scanner);
-                    break;
+                switch (mainOption) {
+                    case "1":
+                        manageAdmins(scanner);
+                        break;
 
-                case "2":
-                    manageClients(scanner);
-                    break;
+                    case "2":
+                        manageClients(scanner);
+                        break;
 
-                case "3":
-                    manageFood(scanner);
-                    break;
+                    case "3":
+                        manageFood(scanner);
+                        break;
 
-                case "4":
-                    viewOrders();
-                    break;
+                    case "4":
+                        viewOrders();
+                        break;
 
-                case "5":
-                    manageOffers(scanner);
-                    break;
+                    case "5":
+                        manageOffers(scanner);
+                        break;
 
-                case "6":
-                    continueLoop = false;
-                    System.out.println("Exiting... Goodbye!");
-                    break;
+                    case "6":
+                        continueLoop = false;
+                        System.out.println("Exiting... Goodbye!");
+                        break;
 
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        break;
+                }
             }
         }
-    }
 
-    // Admin Management Operations
-    private void manageAdmins(Scanner scanner) {
-        boolean adminLoop = true;
-        while (adminLoop) {
-            System.out.println("""
+        // Admin Management Operations
+        private void manageAdmins(Scanner scanner) {
+            boolean adminLoop = true;
+            while (adminLoop) {
+                System.out.println("""
                      Admin Management
                      
                      1. View all admins
@@ -82,42 +82,42 @@ public class AdminUI {
                      4. Delete admin
                      5. Back to main menu
                      """);
-            System.out.print("Choose an option: ");
-            String adminOption = scanner.nextLine();
+                System.out.print("Choose an option: ");
+                String adminOption = scanner.nextLine();
 
-            switch (adminOption) {
-                case "1":
-                    controller.listAllAdmins();
-                    break;
+                switch (adminOption) {
+                    case "1":
+                        controller.listAllAdmins();
+                        break;
 
-                case "2":
-                    addAdmin(scanner);
-                    break;
+                    case "2":
+                        addAdmin(scanner);
+                        break;
 
-                case "3":
-                    updateAdmin(scanner);
-                    break;
+                    case "3":
+                        updateAdmin(scanner);
+                        break;
 
-                case "4":
-                    deleteAdmin(scanner);
-                    break;
+                    case "4":
+                        deleteAdmin(scanner);
+                        break;
 
-                case "5":
-                    adminLoop = false;
-                    break;
+                    case "5":
+                        adminLoop = false;
+                        break;
 
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        break;
+                }
             }
         }
-    }
 
-    // Client Management Operations
-    private void manageClients(Scanner scanner) {
-        boolean clientLoop = true;
-        while (clientLoop) {
-            System.out.println("""
+        // Client Management Operations
+        private void manageClients(Scanner scanner) {
+            boolean clientLoop = true;
+            while (clientLoop) {
+                System.out.println("""
                      Client Management
                      
                      1. View all clients
@@ -126,42 +126,42 @@ public class AdminUI {
                      4. Delete client
                      5. Back to main menu
                      """);
-            System.out.print("Choose an option: ");
-            String clientOption = scanner.nextLine();
+                System.out.print("Choose an option: ");
+                String clientOption = scanner.nextLine();
 
-            switch (clientOption) {
-                case "1":
-                    controller.listAllClients();
-                    break;
+                switch (clientOption) {
+                    case "1":
+                        controller.listAllClients();
+                        break;
 
-                case "2":
-                    addClient(scanner);
-                    break;
+                    case "2":
+                        addClient(scanner);
+                        break;
 
-                case "3":
-                    updateClient(scanner);
-                    break;
+                    case "3":
+                        updateClient(scanner);
+                        break;
 
-                case "4":
-                    deleteClient(scanner);
-                    break;
+                    case "4":
+                        deleteClient(scanner);
+                        break;
 
-                case "5":
-                    clientLoop = false;
-                    break;
+                    case "5":
+                        clientLoop = false;
+                        break;
 
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        break;
+                }
             }
         }
-    }
 
-    // Food Management Operations
-    private void manageFood(Scanner scanner) {
-        boolean foodLoop = true;
-        while (foodLoop) {
-            System.out.println("""
+        // Food Management Operations
+        private void manageFood(Scanner scanner) {
+            boolean foodLoop = true;
+            while (foodLoop) {
+                System.out.println("""
                      Food Management
                      
                      1. View all food items
@@ -174,52 +174,52 @@ public class AdminUI {
                      8. Delete coffee item
                      9. Back to main menu
                      """);
-            System.out.print("Choose an option: ");
-            String foodOption = scanner.nextLine();
+                System.out.print("Choose an option: ");
+                String foodOption = scanner.nextLine();
 
-            switch (foodOption) {
-                case "1":
-                    controller.listAllFoods();
-                    break;
+                switch (foodOption) {
+                    case "1":
+                        controller.listAllFoods();
+                        break;
 
-                case "2":
-                    addFood(scanner);
-                    break;
+                    case "2":
+                        addFood(scanner);
+                        break;
 
-                case "3":
-                    updateFood(scanner);
-                    break;
+                    case "3":
+                        updateFood(scanner);
+                        break;
 
-                case "4":
-                    deleteFood(scanner);
-                    break;
+                    case "4":
+                        deleteFood(scanner);
+                        break;
 
-                case "5":
-                    controller.listAllCoffees();
-                    break;
-                case "6":
-                    addCoffee(scanner);
-                    break;
-                case "7":
-                    updateCoffee(scanner);
-                    break;
-                case "8":
-                    deleteCoffee(scanner);
-                    break;
+                    case "5":
+                        controller.listAllCoffees();
+                        break;
+                    case "6":
+                        addCoffee(scanner);
+                        break;
+                    case "7":
+                        updateCoffee(scanner);
+                        break;
+                    case "8":
+                        deleteCoffee(scanner);
+                        break;
 
-                case "9":
-                    foodLoop = false;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+                    case "9":
+                        foodLoop = false;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        break;
+                }
             }
         }
-    }
 
-    private void manageOffers(Scanner scanner) {
-        boolean offerLoop = true;
-        while (offerLoop) {
-            System.out.println("""
+        private void manageOffers(Scanner scanner) {
+            boolean offerLoop = true;
+            while (offerLoop) {
+                System.out.println("""
                     Offer Management
                     
                     1. View all offers
@@ -228,42 +228,48 @@ public class AdminUI {
                     
                     4. Back to main menu""");
 
-            System.out.print("Choose an option: ");
-            String offerOption = scanner.nextLine();
+                System.out.print("Choose an option: ");
+                String offerOption = scanner.nextLine();
 
-            switch (offerOption) {
-                case "1":
-                    viewOffers();
-                    break;
+                switch (offerOption) {
+                    case "1":
+                        viewOffers();
+                        break;
 
-                case "2":
-                    List<Integer> foods = offerFood(scanner);
-                    System.out.println(foods);
-                    List<Integer> coffees = offerCoffee(scanner);
-                    System.out.println(coffees);
-                    System.out.println("How many points does this offer cost? ");
-                    int points = Integer.parseInt(scanner.nextLine());
-                    Offer offer = controller.addOffer(foods, coffees, points);
-                    System.out.println("Offer added successfully!" + offer);
-                    break;
+                    case "2":
+                        List<Integer> foods = offerFood(scanner);
+                        System.out.println(foods);
+                        List<Integer> coffees = offerCoffee(scanner);
+                        System.out.println(coffees);
+                        System.out.println("How many points does this offer cost? ");
+                        int points = Integer.parseInt(scanner.nextLine());
+                        Offer offer = controller.addOffer(foods, coffees, points);
+                        System.out.println("Offer added successfully!" + offer);
+                        break;
 
-                case "3":
-                    System.out.println("Current active offers: ");
-                    viewOffers();
-                    deleteOffer(scanner);
-                    break;
+                    case "3":
+                        System.out.println("Current active offers: ");
+                        viewOffers();
+                        deleteOffer(scanner);
+                        break;
 
-                case "4":
-                    offerLoop = false;
+                    case "4":
+                        offerLoop = false;
 
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        break;
 
+                }
             }
         }
-    }
 
+        /**
+         * Adds a new admin to the system by prompting the user for necessary details such as ID, age, name, and role.
+         * Validates inputs and catches any format issues with ID and age entries.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void addAdmin(Scanner scanner) {
         try {
             System.out.print("Enter Admin ID: ");
@@ -297,7 +303,12 @@ public class AdminUI {
         }
     }
 
-
+        /**
+         * Adds a new admin to the system by prompting the user for necessary details such as ID, age, name, and role.
+         * Validates inputs and catches any format issues with ID and age entries.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void updateAdmin(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the Admin to update: ");
@@ -363,6 +374,13 @@ public class AdminUI {
         }
     }
 
+        /**
+         * Deletes an existing admin from the system by prompting the user for the admin's ID.
+         * If the admin is found, it is removed from the system; otherwise, an appropriate message is displayed.
+         * Handles invalid ID input gracefully.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void deleteAdmin(Scanner scanner) {
         try {
             System.out.print("Enter the ID of the Admin to delete: ");
@@ -382,7 +400,12 @@ public class AdminUI {
         }
     }
 
-
+        /**
+         * Adds a new client to the system by prompting the user for the client's ID, age, and name.
+         * After gathering the required information, it creates a new Client object and adds it to the system.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void addClient(Scanner scanner){
         System.out.println("Enter Client ID:");
         int id = Integer.parseInt(scanner.nextLine());
@@ -396,6 +419,12 @@ public class AdminUI {
         controller.addClient(client);
     }
 
+        /**
+         * Adds a new food item to the system by prompting the user for the food's ID, name, points, price, and type.
+         * Validates the food type input and creates a new Food object, which is then added to the system.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void addFood(Scanner scanner){
         System.out.println("Enter Food ID:");
         int id = Integer.parseInt(scanner.nextLine());
@@ -432,6 +461,13 @@ public class AdminUI {
 
     }
 
+        /**
+         * Adds a new coffee item to the system by prompting the user for the coffee's ID, price, points, name,
+         * milk type, and caffeine content. Validates the milk type input and creates a new Coffee object,
+         * which is then added to the system.
+         *
+         * @param scanner The Scanner used for user input.
+         */
     private void addCoffee(Scanner scanner){
         System.out.println("Enter Coffee ID:");
         int id = Integer.parseInt(scanner.nextLine());
@@ -472,8 +508,6 @@ public class AdminUI {
 
         Coffee coffee = new Coffee(id, price, points, name, containsCaffeine, milkType);
         controller.addCoffee(coffee);
-
-
     }
 
     private void deleteCoffee(Scanner scanner){
