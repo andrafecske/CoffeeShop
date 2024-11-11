@@ -172,8 +172,7 @@ public class AdminUI {
                      6. Add coffee item
                      7. Update coffee item
                      8. Delete coffee item
-                   
-                     10. Back to main menu
+                     9. Back to main menu
                      """);
             System.out.print("Choose an option: ");
             String foodOption = scanner.nextLine();

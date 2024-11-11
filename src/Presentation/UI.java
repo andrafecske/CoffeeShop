@@ -65,9 +65,9 @@ public class UI {
             System.out.println("Welcome, Admin " + name + "!");
             if(admin.getRole().equals(Role.Manager))
                 adminUI.start();  // Run the Admin-specific UI operations
-            if(admin.getRole().equals(Role.ProductManager))
+            else if(admin.getRole().equals(Role.ProductManager))
                 adminUI.startFoodManager();
-            else
+            else if(admin.getRole().equals(Role.ClientManager))
                 adminUI.startClientManager();
 
             System.out.println("You have been logged out.");
