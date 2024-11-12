@@ -5,7 +5,7 @@ package Models;
  * current and total points. The card has a point limit for current points,
  * and additional points cannot be added once it reaches the maximum threshold.
  */
-public class Card {
+public class Card implements HasID {
     /**
      * The current points available on the card.
      */
@@ -95,5 +95,10 @@ public class Card {
     @Override
     public String toString() {
         return "currentPoints=" + currentPoints + " and totalPoints=" + totalPoints;
+    }
+
+    @Override
+    public Integer getId() {
+        return 0;
     }
 }

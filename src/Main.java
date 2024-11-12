@@ -3,6 +3,7 @@ import Models.*;
 import Presentation.AdminUI;
 import Presentation.ClientUI;
 import Presentation.UI;
+import Repository.FileRepository;
 import Repository.InMemoryRepository;
 import Service.*;
 
@@ -19,7 +20,17 @@ public class Main {
         InMemoryRepository<Offer> OfferRepo = new InMemoryRepository<>();
         InMemoryRepository <OfferOrder> OfferOrderRepo = new InMemoryRepository<>();
 
-        CoffeeShopService coffeeShopService = new CoffeeShopService(adminRepo,clientRepo,coffeeRepo,foodRepo,OrderRepo,OfferRepo, OfferOrderRepo);
+        FileRepository<Admin> adminFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Admins.txt");
+        FileRepository<Client> clientFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Clients.txt");
+        FileRepository<Food> foodFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Foods.txt");
+        FileRepository<Coffee> coffeeFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Coffees.txt");
+        FileRepository<Order> orderFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Orders.txt");
+        FileRepository<Offer> offerFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Offers.txt");
+        FileRepository<OfferOrder> offerOrderFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\OfferOrders.txt");
+
+
+
+        CoffeeShopService coffeeShopService = new CoffeeShopService(adminFileRepo,clientFileRepo,coffeeFileRepo,foodFileRepo,orderFileRepo,offerFileRepo, offerOrderFileRepo);
 
         CoffeeShopController coffeeShopController = new CoffeeShopController(coffeeShopService);
 

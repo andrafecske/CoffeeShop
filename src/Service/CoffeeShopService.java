@@ -45,28 +45,28 @@ public class CoffeeShopService {
         this.orderRepo = orderRepo;
         this.offerRepo = offerRepo;
         this.offerOrderRepo = offerOrderRepo;
-        initializeRepositories();
+//        initializeRepositories();
     }
 
     /**
      * Initializes repositories with sample data for testing and demonstration purposes.
      */
     private void initializeRepositories() {
-        Admin admin1 = new Admin(1, 21, "Iulia", Role.Manager);
-        Admin admin2 = new Admin(2, 30, "Sara", Role.Manager);
-        Admin admin3 = new Admin(3, 25, "Mimi", Role.ProductManager);
-        Admin admin4 = new Admin(4, 23, "Hannah", Role.ClientManager);
-        adminRepo.create(admin1);
-        adminRepo.create(admin2);
-        adminRepo.create(admin3);
-        adminRepo.create(admin4);
+//        Admin admin1 = new Admin(1, 21, "Iulia", Role.Manager);
+//        Admin admin2 = new Admin(2, 30, "Sara", Role.Manager);
+//        Admin admin3 = new Admin(3, 25, "Mimi", Role.ProductManager);
+//        Admin admin4 = new Admin(4, 23, "Hannah", Role.ClientManager);
+//        adminRepo.create(admin1);
+//        adminRepo.create(admin2);
+//        adminRepo.create(admin3);
+//        adminRepo.create(admin4);
 
-        Client client1 = new Client(1, 21,"Maria Nastase");
-        Client client2 = new Client(2, 22,"Luana Eram");
-        Client client3 = new Client(3, 23,"Elena Nicolae");
-        clientRepo.create(client1);
-        clientRepo.create(client2);
-        clientRepo.create(client3);
+//        Client client1 = new Client(1, 21,"Maria Nastase");
+//        Client client2 = new Client(2, 22,"Luana Eram");
+//        Client client3 = new Client(3, 23,"Elena Nicolae");
+//        clientRepo.create(client1);
+//        clientRepo.create(client2);
+//        clientRepo.create(client3);
 
         Coffee coffee1 = new Coffee(1, 23, 100, "Pumpkin Spice Latte", true, MilkType.WHOLE);
         Coffee coffe2 = new Coffee(2, 20, 89, "Caramel Large Latte", true, MilkType.WHOLE);

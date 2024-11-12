@@ -225,7 +225,6 @@ import Utils.MilkType;
                     1. View all offers
                     2. Add offer
                     3. Delete offer
-                    
                     4. Back to main menu""");
 
                 System.out.print("Choose an option: ");
@@ -244,7 +243,7 @@ import Utils.MilkType;
                         System.out.println("How many points does this offer cost? ");
                         int points = Integer.parseInt(scanner.nextLine());
                         Offer offer = controller.addOffer(foods, coffees, points);
-                        System.out.println("Offer added successfully!" + offer);
+                        System.out.println("Offer added successfully!" + "\n" + offer);
                         break;
 
                     case "3":

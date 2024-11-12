@@ -105,15 +105,6 @@ public class Product implements HasID {
     }
 
     /**
-     * Sets the price for this product.
-     *
-     * @param price the new price to set for this product
-     */
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    /**
      * Retrieves the unique identifier of this product, fulfilling the {@code HasID} interface contract.
      *
      * @return the ID of this product
@@ -121,5 +112,9 @@ public class Product implements HasID {
     @Override
     public Integer getId() {
         return ID;
+    }
+
+    public String toStringPretty(){
+        return "ID: " + ID + ", name: " + name + "\n";
     }
 }

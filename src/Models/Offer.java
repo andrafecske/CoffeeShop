@@ -89,9 +89,14 @@ public class Offer implements HasID {
      */
     @Override
     public String toString() {
-        return "Offer [offerID=" + offerID + ", products=" + products + ", pointCost=" + pointCost + "]" + "\n";
-    }
+        StringBuilder productsString = new StringBuilder();
+        for (Product product : products) {
+            productsString.append(product.getName()).append(", ");
+        }
+        productsString.delete(productsString.length() - 1, productsString.length());
 
+        return "offerID=" + offerID +"\n"+ "products:"+ "\n" + productsString + "\n"+ "pointCost = " +pointCost + "\n";
+    }
     /**
      * Retrieves the unique identifier of this offer.
      *
