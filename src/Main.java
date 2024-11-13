@@ -33,14 +33,13 @@ public class Main {
 //        FileRepository<OfferOrder> offerOrderFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\OfferOrders.txt");
 
         //ale
-        FileRepository<Admin> adminFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/Files/Admin2.txt");
-        FileRepository<Client> clientFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Clients.txt");
-        FileRepository<Food> foodFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Foods.txt");
-        FileRepository<Coffee> coffeeFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Coffees.txt");
-        FileRepository<Order> orderFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Orders.txt");
-        FileRepository<Offer> offerFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\Offers.txt");
-        FileRepository<OfferOrder> offerOrderFileRepo = new FileRepository<>("C:\\Coding\\facultate\\MAP\\ProiectMAP\\src\\Files\\OfferOrders.txt");
-
+        FileRepository<Admin> adminFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/Admin2.txt");
+        FileRepository<Client> clientFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/Client2.txt");
+        FileRepository<Food> foodFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/Food2.txt");
+        FileRepository<Coffee> coffeeFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/Coffee2.txt");
+        FileRepository<Offer> offerFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/Offer2.txt");
+        FileRepository<OfferOrder> offerOrderFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/OfferOrder.txt");
+        FileRepository<Order> orderFileRepo = new FileRepository<>("/Users/alexandrabercu/CoffeeShop/src/FileAle/Order2.txt");
 
         CoffeeShopService coffeeShopService = new CoffeeShopService(adminFileRepo,clientFileRepo,coffeeFileRepo,foodFileRepo,orderFileRepo,offerFileRepo, offerOrderFileRepo);
 

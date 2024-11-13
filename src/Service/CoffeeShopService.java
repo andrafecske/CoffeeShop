@@ -61,12 +61,12 @@ public class CoffeeShopService {
         adminRepo.create(admin3);
         adminRepo.create(admin4);
 
-//        Client client1 = new Client(1, 21,"Maria Nastase");
-//        Client client2 = new Client(2, 22,"Luana Eram");
-//        Client client3 = new Client(3, 23,"Elena Nicolae");
-//        clientRepo.create(client1);
-//        clientRepo.create(client2);
-//        clientRepo.create(client3);
+        Client client1 = new Client(1, 21,"Maria Nastase");
+        Client client2 = new Client(2, 22,"Luana Eram");
+        Client client3 = new Client(3, 23,"Elena Nicolae");
+        clientRepo.create(client1);
+        clientRepo.create(client2);
+        clientRepo.create(client3);
 
         Coffee coffee1 = new Coffee(1, 23, 100, "Pumpkin Spice Latte", true, MilkType.WHOLE);
         Coffee coffe2 = new Coffee(2, 20, 89, "Caramel Large Latte", true, MilkType.WHOLE);
