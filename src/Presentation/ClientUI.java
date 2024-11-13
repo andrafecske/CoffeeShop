@@ -35,7 +35,8 @@ public class ClientUI {
                     5. View my points
                     6. Claim offers
                     7. View your orders
-                    8. Exit
+                    8. Sort orders by price
+                    9. Exit
                     
                     """);
             System.out.println("Choose an option: ");
@@ -84,7 +85,15 @@ public class ClientUI {
                     viewOrders();
                     break;
 
-                case "8":
+                case"8":
+                    System.out.println("Your orders sorted by price:");
+                    List<Order> orders = coffeeShopController.sortClientOrdersByPrice(id);
+                    for(Order order1 : orders){
+                        System.out.println(order1);
+                    }
+                    break;
+
+                case "9":
                     continueLoop = false;
                     break;
 

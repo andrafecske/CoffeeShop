@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The {@code Order} class represents an order placed by a client, containing details
@@ -186,12 +187,16 @@ public class Order implements HasID {
      */
     @Override
     public String toString() {
-        return "Order{" +
+        // Collect product names from the list of products
+        String productNames = products.stream()
+                .map(Product::getName)  // Assuming Product has a getName() method
+                .collect(Collectors.joining(", "));  // Join names with commas
+
+        return
                 "ID=" + ID +
                 ", clientID=" + clientID +
                 ", points=" + points +
-                ", totalCost=" + totalCost +
-                ", products=" + products +
-                '}';
+                ", price=" + totalCost +
+                ", products=[" + productNames + "]" ;
     }
 }

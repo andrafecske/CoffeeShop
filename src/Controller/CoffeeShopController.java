@@ -2,8 +2,11 @@ package Controller;
 
 import Models.*;
 import Service.CoffeeShopService;
+import Utils.Role;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -39,17 +42,37 @@ public class CoffeeShopController {
     /**
      * Lists all the admins in the system.
      */
-    public void listAllAdmins() {
+    public List<Admin> listAllAdmins() {
         List<Admin> admins = coffeeShopService.getAllAdmins();
 
         if (admins.isEmpty()) {
             System.out.println("No admins found.");
-        } else {
-            System.out.println("Admins found:");
-            for (Admin admin : admins) {
-                System.out.println(admin);
+    }
+        return admins;
+    }
+
+    public List<Admin> sortAdminsByName(){
+        List<Admin> admins = new ArrayList<>(listAllAdmins());
+        admins.sort(Comparator.comparing(Admin::getName));
+        return admins;
+    }
+
+    public List<Admin> filterAdminsByRole(Role role) {
+        List<Admin> admins = new ArrayList<>(listAllAdmins()); // Create a modifiable list copy
+
+        // Use an iterator to safely remove elements
+        Iterator<Admin> iterator = admins.iterator();
+        while (iterator.hasNext()) {
+            Admin admin = iterator.next();
+            if (!admin.getRole().equals(role)) {
+                iterator.remove(); // Safe removal while iterating
             }
         }
+
+        if (admins.isEmpty()) {
+            System.out.println("No admins found.");
+        }
+        return admins;
     }
 
     /**
@@ -133,6 +156,7 @@ public class CoffeeShopController {
         Card card = client.getCard();
         card.setCurrentPoints(card.getCurrentPoints() + points);
         card.setTotalPoints(card.getTotalPoints() + points);
+        coffeeShopService.updateClient(client);
         return card.getCurrentPoints();
 
     }
@@ -148,6 +172,7 @@ public class CoffeeShopController {
         Card card = client.getCard();
         card.setCurrentPoints(card.getCurrentPoints() - points);
         card.setTotalPoints(card.getTotalPoints() - points);
+        coffeeShopService.updateClient(client);
     }
 
     /**
@@ -433,6 +458,21 @@ public class CoffeeShopController {
         return coffeeShopService.getOrders();
     }
 
+    public List<Order> sortClientOrdersByPrice(Integer clientId){
+        List<Order> orders = new ArrayList<>(getAllOrders());
+
+        List<Order> clientOrders = new ArrayList<>();
+        for (Order order : orders) {
+            if (order.getClientID().equals(clientId)) {
+                clientOrders.add(order);
+            }
+        }
+
+        clientOrders.sort(Comparator.comparingDouble(Order::getTotalCost));
+
+        return clientOrders;
+    }
+
     /**
      * Adds a new offer to the system.
      *
@@ -472,6 +512,8 @@ public class CoffeeShopController {
      */
     public void addOfferOrder(Integer offerId, Integer clientId){
         coffeeShopService.addOfferOrder(offerId, clientId);
+        Offer offer = getOfferById(offerId);
+        removePoints(clientId, offer.getPointCost());
     }
 
 

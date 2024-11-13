@@ -34,8 +34,7 @@ public class Main {
 
         CoffeeShopController coffeeShopController = new CoffeeShopController(coffeeShopService);
 
-        // Create a Scanner instance
-        //CoffeeShopController coffeeShopController2 = new CoffeeShopController(coffeeShopService);
+
         Scanner scanner = new Scanner(System.in);
 
         // Initialize the UI with the controller and Scanner

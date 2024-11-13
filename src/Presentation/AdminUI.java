@@ -1,6 +1,7 @@
 package Presentation;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -80,14 +81,19 @@ import Utils.MilkType;
                      2. Add admin
                      3. Update admin
                      4. Delete admin
-                     5. Back to main menu
+                     5. Sort admins by name
+                     6. View admins by role
+                     7. Back to main menu
                      """);
                 System.out.print("Choose an option: ");
                 String adminOption = scanner.nextLine();
 
                 switch (adminOption) {
                     case "1":
-                        controller.listAllAdmins();
+                        List<Admin> allAdmins = controller.listAllAdmins();
+                        for(Admin admin : allAdmins) {
+                            System.out.println(admin);
+                        }
                         break;
 
                     case "2":
@@ -102,7 +108,25 @@ import Utils.MilkType;
                         deleteAdmin(scanner);
                         break;
 
-                    case "5":
+                    case"5":
+                        System.out.println("Admins sorted by name:" + "\n");
+                        List<Admin> admins = controller.sortAdminsByName();
+                        for(Admin admin : admins) {
+                            System.out.println(admin);
+                        }
+                        break;
+
+                    case "6":
+                        System.out.println("Enter role to filter by(Manager/FoodManager/ProductManager):");
+                        Role role = Role.valueOf(scanner.nextLine());
+                        List<Admin> filteredAdminsByRole = controller.filterAdminsByRole(role);
+                        System.out.println("Filtered admins by role:");
+                        for(Admin admin : filteredAdminsByRole) {
+                            System.out.println(admin);
+                        }
+                        break;
+
+                    case "7":
                         adminLoop = false;
                         break;
 
@@ -301,6 +325,7 @@ import Utils.MilkType;
             System.out.println("Invalid input. Please enter numbers for ID and age.");
         }
     }
+
 
         /**
          * Adds a new admin to the system by prompting the user for necessary details such as ID, age, name, and role.
