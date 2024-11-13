@@ -155,7 +155,6 @@ public class CoffeeShopController {
         Client client = coffeeShopService.getClientById(clientId);
         Card card = client.getCard();
         card.setCurrentPoints(card.getCurrentPoints() + points);
-        card.setTotalPoints(card.getTotalPoints() + points);
         coffeeShopService.updateClient(client);
         return card.getCurrentPoints();
 
@@ -171,7 +170,6 @@ public class CoffeeShopController {
         Client client = coffeeShopService.getClientById(clientId);
         Card card = client.getCard();
         card.setCurrentPoints(card.getCurrentPoints() - points);
-        card.setTotalPoints(card.getTotalPoints() - points);
         coffeeShopService.updateClient(client);
     }
 
@@ -354,7 +352,6 @@ public class CoffeeShopController {
         Client client = coffeeShopService.getClientById(clientId);
         Card card = client.getCard();
         card.setCurrentPoints(card.getCurrentPoints() + currPoints);
-        card.setTotalPoints(card.getTotalPoints() + currPoints);
 
     }
 
@@ -481,8 +478,8 @@ public class CoffeeShopController {
      * @param pointCost the point cost for the offer.
      * @return the created offer.
      */
-    public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost) {
-        return coffeeShopService.addOffer(foodIds, coffeeIds, pointCost);
+    public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost, String name) {
+        return coffeeShopService.addOffer(foodIds, coffeeIds, pointCost, name);
 
     }
 
@@ -500,6 +497,26 @@ public class CoffeeShopController {
                 System.out.println(offer);
             }
         }
+    }
+
+
+    public void listAllOffersClients(Integer clientID) {
+        List<Offer> offers = coffeeShopService.getAllOffers();
+        Client client = coffeeShopService.getClientById(clientID);
+        if(offers.isEmpty()) {
+            System.out.println("No offer found");
+        }
+        else {
+            System.out.println("Offer list:");
+            for(Offer offer : offers) {
+                if(offer.pointCost < client.getCard().getCurrentPoints())
+                {System.out.println(offer.clientView());}
+            }
+        }
+    }
+
+    public List<Offer> getAllOffers(){
+        return coffeeShopService.getAllOffers();
     }
 
     //OFFER ORDER OPERATIONS

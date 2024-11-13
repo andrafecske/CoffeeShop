@@ -266,7 +266,9 @@ import Utils.MilkType;
                         System.out.println(coffees);
                         System.out.println("How many points does this offer cost? ");
                         int points = Integer.parseInt(scanner.nextLine());
-                        Offer offer = controller.addOffer(foods, coffees, points);
+                        System.out.println("What is the offer's name?");
+                        String name = scanner.nextLine();
+                        Offer offer = controller.addOffer(foods, coffees, points, name);
                         System.out.println("Offer added successfully!" + "\n" + offer);
                         break;
 

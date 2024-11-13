@@ -24,6 +24,7 @@ public class Offer implements HasID {
      */
     public int pointCost;
 
+    private String name;
     /**
      * Constructs a new {@code Offer} with the specified ID, list of products, and point cost.
      *
@@ -31,8 +32,9 @@ public class Offer implements HasID {
      * @param products  the list of products included in the offer
      * @param pointCost the point cost required to redeem this offer
      */
-    public Offer(Integer offerID, List<Product> products, int pointCost) {
+    public Offer(Integer offerID, List<Product> products, int pointCost, String name) {
         this.offerID = offerID;
+        this.name = name;
         this.products = products;
         this.pointCost = pointCost;
     }
@@ -97,6 +99,10 @@ public class Offer implements HasID {
 
         return "offerID=" + offerID +"\n"+ "products:"+ "\n" + productsString + "\n"+ "pointCost = " +pointCost + "\n";
     }
+
+    public String clientView(){
+        return "name=" + name +"\n" + "point cost=" + pointCost + "\n";
+    }
     /**
      * Retrieves the unique identifier of this offer.
      *
@@ -105,5 +111,13 @@ public class Offer implements HasID {
     @Override
     public Integer getId() {
         return offerID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

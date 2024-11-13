@@ -12,45 +12,11 @@ public class Card implements HasID {
     private int currentPoints;
 
     /**
-     * The total points accumulated on the card.
-     */
-    private int totalPoints;
-
-    /**
      * Constructs a new {@code Card} with initial points set to zero.
      */
     public Card() {
         this.currentPoints = 0;
-        this.totalPoints = 0;
     }
-
-//    /**
-//     * Checks if the card has reached the maximum allowed points.
-//     *
-//     * @return {@code true} if current points exceed the maximum threshold of 500, {@code false} otherwise
-//     */
-//    private boolean isMaxedOut() {
-//        return currentPoints > 500;
-//    }
-//
-//    /**
-//     * Adds points to the current points on the card, if the card has not reached the maximum limit.
-//     *
-//     * @param points the number of points to add
-//     */
-//    public void addPoints(int points) {
-//        if (!isMaxedOut()) {
-//            currentPoints += points;
-//        }
-//    }
-//
-//    /**
-//     * Clears the current points on the card, resetting them to zero.
-//     */
-//    public void clearPoints() {
-//        currentPoints = 0;
-//    }
-
     /**
      * Retrieves the current points on the card.
      *
@@ -60,23 +26,7 @@ public class Card implements HasID {
         return currentPoints;
     }
 
-    /**
-     * Retrieves the total points accumulated on the card.
-     *
-     * @return the total points
-     */
-    public int getTotalPoints() {
-        return totalPoints;
-    }
 
-    /**
-     * Sets the total points accumulated on the card.
-     *
-     * @param totalPoints the total points to set
-     */
-    public void setTotalPoints(int totalPoints) {
-        this.totalPoints = totalPoints;
-    }
 
     /**
      * Sets the current points on the card.
@@ -94,7 +44,7 @@ public class Card implements HasID {
      */
     @Override
     public String toString() {
-        return "currentPoints=" + currentPoints + " and totalPoints=" + totalPoints;
+        return "currentPoints=" + currentPoints ;
     }
 
     @Override

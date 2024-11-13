@@ -523,7 +523,7 @@ public class CoffeeShopService {
      * @param pointCost an {@code int} representing the point cost of the offer.
      * @return the newly created {@link Offer} object.
      */
-   public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost) {
+   public Offer addOffer(List<Integer> foodIds, List<Integer> coffeeIds, int pointCost, String name) {
         int offerId = generateOfferID();
 
        List<Product> products = new ArrayList<>();
@@ -535,7 +535,7 @@ public class CoffeeShopService {
            Coffee coffee = getCoffeeById(coffeeID);
            products.add(coffee);
        }
-       Offer offer = new Offer(offerId, products, pointCost);
+       Offer offer = new Offer(offerId, products, pointCost, name);
         offerRepo.create(offer);
         return offer;
    }

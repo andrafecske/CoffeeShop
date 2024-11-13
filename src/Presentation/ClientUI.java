@@ -74,10 +74,24 @@ public class ClientUI {
 
                 case "6":
                     viewPoints();
-                    coffeeShopController.listAllOffers();
-                    System.out.println("Here are the available offers, enter ID of the one you want to use:");
-                    int offerID = Integer.parseInt(scanner.nextLine());
+                    Integer offerID=0;
+                    System.out.println("Here are the offers you can afford, enter the name of the one you want to use:");
+                    coffeeShopController.listAllOffersClients(id);
+                    String offerName = scanner.nextLine();
+                    List<Offer> offers = coffeeShopController.getAllOffers();
+                    for(Offer offer: offers){
+                        if(offer.getName().equals(offerName)){
+                            offerID = offer.getId();
+                            break;
+                        }
+                    }
+                    if(offerID == 0)
+                    {
+                        System.out.println("Offer not found!");
+                        break;
+                    }
                     coffeeShopController.addOfferOrder(offerID, id);
+                    System.out.println("Order added successfully!");
                     viewPoints();
                     break;
 
