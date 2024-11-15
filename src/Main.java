@@ -45,7 +45,7 @@ public class Main {
 
         CoffeeShopController coffeeShopController = new CoffeeShopController(coffeeShopService);
 
-        System.out.println(coffeeShopController.listAllAdmins());
+        //System.out.println(coffeeShopController.listAllAdmins());
 
 
 

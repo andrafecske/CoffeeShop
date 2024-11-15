@@ -35,6 +35,10 @@ public class CoffeeShopController {
      * @param admin the admin to be added.
      */
     public void addAdmin(Admin admin) {
+        if(admin == null) {
+            System.out.println("Admin is null");
+            return;
+        }
         coffeeShopService.addAdmin(admin);
         System.out.println("Admin added successfully");
     }
@@ -81,6 +85,9 @@ public class CoffeeShopController {
      * @param admin the admin with updated details.
      */
     public void updateAdmin(Admin admin) {
+        if(admin == null){
+            System.out.println("Admin is null");
+            return;}
         coffeeShopService.updateAdmin(admin);
         System.out.println("Admin updated successfully");
     }
@@ -201,10 +208,19 @@ public class CoffeeShopController {
      *
      * @param coffee the coffee to be added.
      */
+//    public void addCoffee(Coffee coffee) {
+//        coffeeShopService.addCoffee(coffee);
+//        System.out.println("Coffee added");
+//    }
     public void addCoffee(Coffee coffee) {
-        coffeeShopService.addCoffee(coffee);
-        System.out.println("Coffee added");
+        try {
+            coffeeShopService.addCoffee(coffee); // Call service method to add coffee
+            System.out.println("Coffee added");
+        } catch (Exception e) {
+            System.out.println("Error adding coffee: " + e.getMessage());
+        }
     }
+
 
     /**
      * Lists all coffees in the system.
@@ -258,10 +274,20 @@ public class CoffeeShopController {
      *
      * @param food the food to be added.
      */
+//    public void addFood(Food food) {
+//        coffeeShopService.addFood(food);
+//        System.out.println("Food added");
+//    }
+
     public void addFood(Food food) {
-        coffeeShopService.addFood(food);
-        System.out.println("Food added");
+        try {
+            coffeeShopService.addFood(food); // Call service method to add food
+            System.out.println("Food added");
+        } catch (Exception e) {
+            System.out.println("Error adding food: " + e.getMessage());
+        }
     }
+
 
     /**
      * Lists all food items in the system.

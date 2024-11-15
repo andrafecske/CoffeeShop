@@ -90,11 +90,6 @@ public class CoffeeShopService {
      */
 
     public void addAdmin(Admin admin) {
-        if(admin == null) {
-            System.out.println("Admin is null");
-            return;
-        }
-
         adminRepo.create(admin);
     }
 
@@ -115,10 +110,6 @@ public class CoffeeShopService {
      */
 
     public void updateAdmin(Admin admin) {
-        if(admin == null){
-            System.out.println("Admin is null");
-            return;}
-
         Admin exists = adminRepo.read(admin.getId());
         if (exists != null) {
             adminRepo.update(admin.getId(), admin);
@@ -165,16 +156,24 @@ public class CoffeeShopService {
      * @param client the client to be added
      */
 
-    public void addClient(Client client){
-        if(client == null){
-            System.out.println("Client is null");
-            return;
+    public void addClient(Client client) {
+        try {
+            if (client == null) {
+                System.out.println("Client is null");
+                return;
+            }
+
+            if (isAdminDuplicate(client)) {
+                System.out.println("Can't create client, there is already an admin with the same name and id");
+                return;
+            }
+
+            clientRepo.create(client);
+            System.out.println("Client added successfully");
+
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred while adding the client: " + e.getMessage());
         }
-        if(isAdminDuplicate(client)){
-            System.out.println("Can't create client, there is already an admin with the same name and id");
-        }
-        clientRepo.create(client);
-        System.out.println("Client added successfully");
     }
 
     /**
@@ -257,14 +256,29 @@ public class CoffeeShopService {
      *               <p>If {@code coffee} is null, an error message is displayed and the operation is not performed.</p>
      */
 
-    public void addCoffee(Coffee coffee){
-        if(coffee == null){
-            System.out.println("Coffee is null");
-            return;
-        }
+//    public void addCoffee(Coffee coffee){
+//        if(coffee == null){
+//            System.out.println("Coffee is null");
+//            return;
+//        }
+//
+//        coffeeRepo.create(coffee);
+//    }
+    public void addCoffee(Coffee coffee) {
+        try {
+            if (coffee == null) {
+                System.out.println("Coffee is null");
+                return;
+            }
 
-        coffeeRepo.create(coffee);
+            coffeeRepo.create(coffee);
+            System.out.println("Coffee added successfully");
+
+        } catch (Exception e) {
+            System.out.println("Error adding coffee to repository: " + e.getMessage());
+        }
     }
+
 
     /**
      * Retrieves a list of all coffee items from the coffee repository.
@@ -341,14 +355,29 @@ public class CoffeeShopService {
      *
      * @param food the {@link Food} object to be added to the repository.
      */
-    public void addFood(Food food){
-        if(food == null){
-            System.out.println("Food is null");
-            return;
-        }
+//    public void addFood(Food food){
+//        if(food == null){
+//            System.out.println("Food is null");
+//            return;
+//        }
+//
+//        foodRepo.create(food);
+//    }
 
-        foodRepo.create(food);
+    public void addFood(Food food) {
+        try {
+            if (food == null) {
+                System.out.println("Food is null");
+                return;
+            }
+
+            foodRepo.create(food);
+            System.out.println("Food added successfully");
+        } catch (Exception e) {
+            System.out.println("Error adding food to repository: " + e.getMessage());
+        }
     }
+
 
     /**
      * Retrieves all {@link Food} items currently stored in the food repository.

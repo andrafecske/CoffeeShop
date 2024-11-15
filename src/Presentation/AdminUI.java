@@ -432,18 +432,41 @@ import Utils.MilkType;
          *
          * @param scanner The Scanner used for user input.
          */
-    private void addClient(Scanner scanner){
-        System.out.println("Enter Client ID:");
-        int id = Integer.parseInt(scanner.nextLine());
+//    private void addClient(Scanner scanner){
+//        System.out.println("Enter Client ID:");
+//        int id = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.println("Enter Age:");
+//        int age = Integer.parseInt(scanner.nextLine());
+//        System.out.println("Enter Name:");
+//        String name = scanner.nextLine();
+//
+//        Client client = new Client(id, age, name);
+//        controller.addClient(client);
+//    }
+        private void addClient(Scanner scanner) {
+            try {
+                System.out.println("Enter Client ID:");
+                int id = Integer.parseInt(scanner.nextLine()); // Validate numeric input for ID
 
-        System.out.println("Enter Age:");
-        int age = Integer.parseInt(scanner.nextLine());
-        System.out.println("Enter Name:");
-        String name = scanner.nextLine();
+                System.out.println("Enter Age:");
+                int age = Integer.parseInt(scanner.nextLine()); // Validate numeric input for Age
 
-        Client client = new Client(id, age, name);
-        controller.addClient(client);
-    }
+                System.out.println("Enter Name:");
+                String name = scanner.nextLine(); // Read Name input
+
+                Client client = new Client(id, age, name); // Create Client object
+                controller.addClient(client); // Add client using the controller
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid numeric value for ID and Age.");
+            } catch (NullPointerException e) {
+                System.out.println("Error: Missing data. Please ensure all fields are filled out.");
+            } catch (Exception e) {
+                System.out.println("An unexpected error occurred: " + e.getMessage());
+            }
+        }
+
 
         /**
          * Adds a new food item to the system by prompting the user for the food's ID, name, points, price, and type.
@@ -451,41 +474,86 @@ import Utils.MilkType;
          *
          * @param scanner The Scanner used for user input.
          */
-    private void addFood(Scanner scanner){
-        System.out.println("Enter Food ID:");
-        int id = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Enter Food Name:");
-        String name = scanner.nextLine();
+        private void addFood(Scanner scanner) {
+            try {
+                System.out.println("Enter Food ID:");
+                int id = Integer.parseInt(scanner.nextLine()); // Parse Food ID
 
-        System.out.println("Enter Food Points:");
-        int points = Integer.parseInt(scanner.nextLine());
+                System.out.println("Enter Food Name:");
+                String name = scanner.nextLine(); // Get Food Name
 
-        System.out.println("Enter Food price:");
-        int price = Integer.parseInt(scanner.nextLine());
+                System.out.println("Enter Food Points:");
+                int points = Integer.parseInt(scanner.nextLine()); // Parse Points
 
-        System.out.print("Enter FoodType (SNACK/SANDWICH/DESSERT/MEAL): ");
-        String typeInput = scanner.nextLine();
-        FoodType type;
-        if("SNACK".equalsIgnoreCase(typeInput)) {
-            type = FoodType.SNACK;
-        }else if("SANDWICH".equalsIgnoreCase(typeInput)) {
-            type = FoodType.SANDWICH;
-        } else if ("DESSERT".equalsIgnoreCase(typeInput)) {
-            type = FoodType.DESSERT;
-        } else if ("MEAL".equalsIgnoreCase(typeInput)) {
-            type = FoodType.MEAL;
+                System.out.println("Enter Food price:");
+                int price = Integer.parseInt(scanner.nextLine()); // Parse Price
+
+                System.out.print("Enter FoodType (SNACK/SANDWICH/DESSERT/MEAL): ");
+                String typeInput = scanner.nextLine();
+                FoodType type;
+
+                // Parse the food type
+                if ("SNACK".equalsIgnoreCase(typeInput)) {
+                    type = FoodType.SNACK;
+                } else if ("SANDWICH".equalsIgnoreCase(typeInput)) {
+                    type = FoodType.SANDWICH;
+                } else if ("DESSERT".equalsIgnoreCase(typeInput)) {
+                    type = FoodType.DESSERT;
+                } else if ("MEAL".equalsIgnoreCase(typeInput)) {
+                    type = FoodType.MEAL;
+                } else {
+                    System.out.println("Invalid input. Please enter a valid food type.");
+                    return; // Exit the method if the food type is invalid
+                }
+
+                // Create a Food object and pass it to the controller
+                Food food = new Food(id, price, points, name, type);
+                controller.addFood(food); // Call controller method to add food
+                System.out.println("Food added successfully");
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid numeric value for ID, Points, and Price.");
+            } catch (Exception e) {
+                System.out.println("An unexpected error occurred: " + e.getMessage());
+            }
         }
-        else{
-            System.out.println("Invalid input. Please enter a valid food type.");
-            return;
-        }
 
-        Food food = new Food(id, price,points,name,type);
-        controller.addFood(food);
-        System.out.println("Food added successfully");
-
-    }
+//    private void addFood(Scanner scanner){
+//        System.out.println("Enter Food ID:");
+//        int id = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.println("Enter Food Name:");
+//        String name = scanner.nextLine();
+//
+//        System.out.println("Enter Food Points:");
+//        int points = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.println("Enter Food price:");
+//        int price = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.print("Enter FoodType (SNACK/SANDWICH/DESSERT/MEAL): ");
+//        String typeInput = scanner.nextLine();
+//        FoodType type;
+//        if("SNACK".equalsIgnoreCase(typeInput)) {
+//            type = FoodType.SNACK;
+//        }else if("SANDWICH".equalsIgnoreCase(typeInput)) {
+//            type = FoodType.SANDWICH;
+//        } else if ("DESSERT".equalsIgnoreCase(typeInput)) {
+//            type = FoodType.DESSERT;
+//        } else if ("MEAL".equalsIgnoreCase(typeInput)) {
+//            type = FoodType.MEAL;
+//        }
+//        else{
+//            System.out.println("Invalid input. Please enter a valid food type.");
+//            return;
+//        }
+//
+//        Food food = new Food(id, price,points,name,type);
+//        controller.addFood(food);
+//        System.out.println("Food added successfully");
+//
+//    }
 
         /**
          * Adds a new coffee item to the system by prompting the user for the coffee's ID, price, points, name,
@@ -494,55 +562,108 @@ import Utils.MilkType;
          *
          * @param scanner The Scanner used for user input.
          */
-    private void addCoffee(Scanner scanner){
-        System.out.println("Enter Coffee ID:");
-        int id = Integer.parseInt(scanner.nextLine());
+//    private void addCoffee(Scanner scanner){
+//        System.out.println("Enter Coffee ID:");
+//        int id = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.println("Enter price:");
+//        int price = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.print("Enter Coffee points:");
+//        int points = Integer.parseInt(scanner.nextLine());
+//
+//        System.out.print("Enter Coffee name:");
+//        String name = scanner.nextLine();
+//
+//        System.out.print("Enter Milk Type (WHOLE/SKIM/SOY/ALMOND/OAT/NONE): ");
+//        String milkTypeInput = scanner.nextLine();
+//        MilkType milkType;
+//
+//        if ("WHOLE".equalsIgnoreCase(milkTypeInput)) {
+//            milkType = MilkType.WHOLE;
+//        } else if ("SKIM".equalsIgnoreCase(milkTypeInput)) {
+//            milkType = MilkType.SKIM;
+//        } else if ("SOY".equalsIgnoreCase(milkTypeInput)) {
+//            milkType = MilkType.SOY;
+//        } else if ("ALMOND".equalsIgnoreCase(milkTypeInput)) {
+//            milkType = MilkType.ALMOND;
+//        } else if ("OAT".equalsIgnoreCase(milkTypeInput)) {
+//            milkType = MilkType.OAT;
+//        } else if ("NONE".equalsIgnoreCase(milkTypeInput)) {
+//            milkType = MilkType.NONE;
+//        } else {
+//            System.out.println("Invalid input. Please enter a valid milk type.");
+//            return;
+//        }
+//
+//        System.out.println("Does it contain caffeine?");
+//        boolean containsCaffeine = Boolean.parseBoolean(scanner.nextLine());
+//
+//
+//        Coffee coffee = new Coffee(id, price, points, name, containsCaffeine, milkType);
+//        controller.addCoffee(coffee);
+//    }
 
-        System.out.println("Enter price:");
-        int price = Integer.parseInt(scanner.nextLine());
+        private void addCoffee(Scanner scanner) {
+            try {
+                System.out.println("Enter Coffee ID:");
+                int id = Integer.parseInt(scanner.nextLine()); // Parse Coffee ID
 
-        System.out.print("Enter Coffee points:");
-        int points = Integer.parseInt(scanner.nextLine());
+                System.out.println("Enter price:");
+                int price = Integer.parseInt(scanner.nextLine()); // Parse price
 
-        System.out.print("Enter Coffee name:");
-        String name = scanner.nextLine();
+                System.out.print("Enter Coffee points:");
+                int points = Integer.parseInt(scanner.nextLine()); // Parse points
 
-        System.out.print("Enter Milk Type (WHOLE/SKIM/SOY/ALMOND/OAT/NONE): ");
-        String milkTypeInput = scanner.nextLine();
-        MilkType milkType;
+                System.out.print("Enter Coffee name:");
+                String name = scanner.nextLine(); // Get name
 
-        if ("WHOLE".equalsIgnoreCase(milkTypeInput)) {
-            milkType = MilkType.WHOLE;
-        } else if ("SKIM".equalsIgnoreCase(milkTypeInput)) {
-            milkType = MilkType.SKIM;
-        } else if ("SOY".equalsIgnoreCase(milkTypeInput)) {
-            milkType = MilkType.SOY;
-        } else if ("ALMOND".equalsIgnoreCase(milkTypeInput)) {
-            milkType = MilkType.ALMOND;
-        } else if ("OAT".equalsIgnoreCase(milkTypeInput)) {
-            milkType = MilkType.OAT;
-        } else if ("NONE".equalsIgnoreCase(milkTypeInput)) {
-            milkType = MilkType.NONE;
-        } else {
-            System.out.println("Invalid input. Please enter a valid milk type.");
-            return;
+                System.out.print("Enter Milk Type (WHOLE/SKIM/SOY/ALMOND/OAT/NONE): ");
+                String milkTypeInput = scanner.nextLine();
+                MilkType milkType;
+
+                // Parse the milk type
+                if ("WHOLE".equalsIgnoreCase(milkTypeInput)) {
+                    milkType = MilkType.WHOLE;
+                } else if ("SKIM".equalsIgnoreCase(milkTypeInput)) {
+                    milkType = MilkType.SKIM;
+                } else if ("SOY".equalsIgnoreCase(milkTypeInput)) {
+                    milkType = MilkType.SOY;
+                } else if ("ALMOND".equalsIgnoreCase(milkTypeInput)) {
+                    milkType = MilkType.ALMOND;
+                } else if ("OAT".equalsIgnoreCase(milkTypeInput)) {
+                    milkType = MilkType.OAT;
+                } else if ("NONE".equalsIgnoreCase(milkTypeInput)) {
+                    milkType = MilkType.NONE;
+                } else {
+                    System.out.println("Invalid input. Please enter a valid milk type.");
+                    return;// Exit the method if milk type is invalid
+                }
+
+                System.out.println("Does it contain caffeine?");
+                boolean containsCaffeine = Boolean.parseBoolean(scanner.nextLine()); // Parse caffeine info
+
+                // Create Coffee object and pass to controller
+                Coffee coffee = new Coffee(id, price, points, name, containsCaffeine, milkType);
+                controller.addCoffee(coffee); // Call controller method to add coffee
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter valid numeric values for ID, price, and points.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid milk type input! Please enter one of the following: WHOLE, SKIM, SOY, ALMOND, OAT, NONE.");
+            } catch (Exception e) {
+                System.out.println("An unexpected error occurred: " + e.getMessage());
+            }
         }
 
-        System.out.println("Does it contain caffeine?");
-        boolean containsCaffeine = Boolean.parseBoolean(scanner.nextLine());
-
-
-        Coffee coffee = new Coffee(id, price, points, name, containsCaffeine, milkType);
-        controller.addCoffee(coffee);
-    }
 
         /**
-         * Deletes an existing coffee item from the system by prompting the user for the coffee's ID.
-         * If the coffee item is found, it is removed from the system; otherwise, an appropriate message is displayed.
-         * Handles invalid ID input gracefully.
-         *
-         * @param scanner The Scanner used for user input.
-         */
+                 * Deletes an existing coffee item from the system by prompting the user for the coffee's ID.
+                 * If the coffee item is found, it is removed from the system; otherwise, an appropriate message is displayed.
+                 * Handles invalid ID input gracefully.
+                 *
+                 * @param scanner The Scanner used for user input.
+                 */
     private void deleteCoffee(Scanner scanner){
         try {
             System.out.print("Enter the ID of the Coffee to delete: ");
@@ -842,27 +963,56 @@ import Utils.MilkType;
          * @param scanner The Scanner used to read user input.
          * @return A list of food IDs that the user selected for the offer.
          */
-    public List<Integer> offerFood(Scanner scanner) {
-        List<Integer> foods = new ArrayList<>();
-        while(true){
-            controller.listAllFoods();
-            System.out.println("What food would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
-            String id = scanner.nextLine();
-            if(id.isEmpty())
-                break;
-            Integer intId = Integer.parseInt(id);
+//    public List<Integer> offerFood(Scanner scanner) {
+//        List<Integer> foods = new ArrayList<>();
+//        while(true){
+//            controller.listAllFoods();
+//            System.out.println("What food would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
+//            String id = scanner.nextLine();
+//            if(id.isEmpty())
+//                break;
+//            Integer intId = Integer.parseInt(id);
+//
+//            if(controller.getFoodById(intId) != null){
+//                foods.add(intId);
+//            }
+//            else
+//            {
+//                System.out.println("Invalid ID");
+//            }
+//
+//        }
+//        return foods;
+//    }
+        public List<Integer> offerFood(Scanner scanner) {
+            List<Integer> foods = new ArrayList<>();
+            while(true){
+                controller.listAllFoods();
+                System.out.println("What food would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
+                String id = scanner.nextLine();
 
-            if(controller.getFoodById(intId) != null){
-                foods.add(intId);
-            }
-            else
-            {
-                System.out.println("Invalid ID");
-            }
+                // Break if the user presses enter without input
+                if(id.isEmpty()) {
+                    break;
+                }
+                try {
+                    // Try to parse the entered ID to an integer
+                    Integer intId = Integer.parseInt(id);
 
+                    // Check if the food exists in the list
+                    if(controller.getFoodById(intId) != null){
+                        foods.add(intId);
+                    } else {
+                        System.out.println("Invalid ID");
+                    }
+                } catch (NumberFormatException e) {
+                    // Handle case where the entered ID is not a valid integer
+                    System.out.println("Invalid input. Please enter a valid numeric food ID.");
+                }
+            }
+            return foods;
         }
-        return foods;
-    }
+
 
         /**
          * Allows the user to select coffee items to add to an offer by entering their IDs.
@@ -872,26 +1022,55 @@ import Utils.MilkType;
          * @param scanner The Scanner used to read user input.
          * @return A list of coffee IDs that the user selected for the offer.
          */
-    public List<Integer> offerCoffee(Scanner scanner) {
-        List<Integer> coffees = new ArrayList<>();
-        while(true){
-            controller.listAllCoffees();
-            System.out.println("What coffee would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
-            String id = scanner.nextLine();
-            if(id.isEmpty())
-                break;
-            Integer intId = Integer.parseInt(id);
-            if(controller.getCoffeeById(intId) != null){
-                coffees.add(intId);
-            }
-            else
-            {
-                System.out.println("Invalid ID");
-            }
-        }
-        return coffees;
+//    public List<Integer> offerCoffee(Scanner scanner) {
+//        List<Integer> coffees = new ArrayList<>();
+//        while(true){
+//            controller.listAllCoffees();
+//            System.out.println("What coffee would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
+//            String id = scanner.nextLine();
+//            if(id.isEmpty())
+//                break;
+//            Integer intId = Integer.parseInt(id);
+//            if(controller.getCoffeeById(intId) != null){
+//                coffees.add(intId);
+//            }
+//            else
+//            {
+//                System.out.println("Invalid ID");
+//            }
+//        }
+//        return coffees;
+//    }
+        public List<Integer> offerCoffee(Scanner scanner) {
+            List<Integer> coffees = new ArrayList<>();
+            while(true){
+                controller.listAllCoffees();
+                System.out.println("What coffee would you like to add to the offer? Enter the ID or press enter if you would like to stop adding");
+                String id = scanner.nextLine();
 
-    }
+                // Break the loop if the user presses enter without entering an ID
+                if(id.isEmpty()) {
+                    break;
+                }
+
+                try {
+                    // Try to parse the entered ID to an integer
+                    Integer intId = Integer.parseInt(id);
+
+                    // Check if the coffee exists in the list
+                    if(controller.getCoffeeById(intId) != null){
+                        coffees.add(intId);
+                    } else {
+                        System.out.println("Invalid ID");
+                    }
+                } catch (NumberFormatException e) {
+                    // Handle case where the entered ID is not a valid integer
+                    System.out.println("Invalid input. Please enter a valid numeric coffee ID.");
+                }
+            }
+            return coffees;
+        }
+
 
         /**
          * Deletes an offer based on the offer ID provided by the user.
