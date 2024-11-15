@@ -51,13 +51,33 @@ public class ClientUI {
                      break;
 
                 case"2":
+//                    List<Integer> foods = orderFood();
+//                    System.out.println(foods);
+//                    List<Integer> coffees = orderCoffee();
+//                    System.out.println(coffees);
+//                    Order order = coffeeShopController.addOrder(id, foods, coffees);
+//                    System.out.println("Order added successfully!" + order);
                     List<Integer> foods = orderFood();
-                    System.out.println(foods);
-                    List<Integer> coffees = orderCoffee();
-                    System.out.println(coffees);
-                    Order order = coffeeShopController.addOrder(id, foods, coffees);
-                    System.out.println("Order added successfully!" + order);
+                    if (foods.isEmpty()) {
+                        System.out.println("No food items selected.");
+                    } else {
+                        System.out.println("Selected food items: " + foods);
+                    }
 
+                    List<Integer> coffees = orderCoffee();
+                    if (coffees.isEmpty()) {
+                        System.out.println("No coffee items selected.");
+                    } else {
+                        System.out.println("Selected coffee items: " + coffees);
+                    }
+
+                    if (foods.isEmpty() && coffees.isEmpty()) {
+                        System.out.println("Order creation canceled. No items selected.");
+                        break;
+                    }
+
+                    Order order = coffeeShopController.addOrder(id, foods, coffees);
+                    System.out.println("Order added successfully! " + order);
                     break;
 
                 case "3":
@@ -124,27 +144,55 @@ public class ClientUI {
      *
      * @return A list of food IDs that the client has selected to order.
      */
-    public List<Integer> orderFood(){
+//    public List<Integer> orderFood(){
+//        List<Integer> foods = new ArrayList<>();
+//        while(true){
+//            coffeeShopController.listAllFoods();
+//            System.out.println("What food would you like to order? Enter the ID or press enter if you would like to stop ordering");
+//            String id = scanner.nextLine();
+//            if(id.isEmpty())
+//                break;
+//            Integer intId = Integer.parseInt(id);
+//
+//            if(coffeeShopController.getFoodById(intId) != null){
+//                foods.add(intId);
+//            }
+//            else
+//            {
+//                System.out.println("Invalid ID");
+//            }
+//
+//        }
+//        return foods;
+//    }
+
+    public List<Integer> orderFood() {
         List<Integer> foods = new ArrayList<>();
-        while(true){
-            coffeeShopController.listAllFoods();
-            System.out.println("What food would you like to order? Enter the ID or press enter if you would like to stop ordering");
-            String id = scanner.nextLine();
-            if(id.isEmpty())
-                break;
-            Integer intId = Integer.parseInt(id);
+        while (true) {
+            try {
+                coffeeShopController.listAllFoods();
+                System.out.println("What food would you like to order? Enter the ID or press Enter if you would like to stop ordering");
+                String id = scanner.nextLine();
 
-            if(coffeeShopController.getFoodById(intId) != null){
-                foods.add(intId);
-            }
-            else
-            {
-                System.out.println("Invalid ID");
-            }
+                if (id.isEmpty()) {
+                    break; // Exit the loop if input is empty
+                }
 
+                Integer intId = Integer.parseInt(id.trim()); // Convert input to Integer
+                if (coffeeShopController.getFoodById(intId) != null) {
+                    foods.add(intId); // Add valid ID to the list
+                } else {
+                    System.out.println("Invalid ID");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid numeric ID.");
+            } catch (Exception e) {
+                System.out.println("An unexpected error occurred: " + e.getMessage());
+            }
         }
         return foods;
     }
+
 
     /**
      * Allows the client to order coffee items from the coffee shop menu.
@@ -155,25 +203,54 @@ public class ClientUI {
      *
      * @return A list of coffee IDs that the client has selected to order.
      */
-    public List<Integer> orderCoffee(){
+//    public List<Integer> orderCoffee(){
+//        List<Integer> coffees = new ArrayList<>();
+//        while(true){
+//            coffeeShopController.listAllCoffees();
+//            System.out.println("What coffee would you like to order? Enter the ID or press enter if you would like to stop ordering");
+//            String id = scanner.nextLine();
+//            if(id.isEmpty())
+//                break;
+//            Integer intId = Integer.parseInt(id);
+//            if(coffeeShopController.getCoffeeById(intId) != null){
+//                coffees.add(intId);
+//            }
+//            else
+//            {
+//                System.out.println("Invalid ID");
+//            }
+//        }
+//        return coffees;
+//    }
+
+    public List<Integer> orderCoffee() {
         List<Integer> coffees = new ArrayList<>();
-        while(true){
-            coffeeShopController.listAllCoffees();
-            System.out.println("What coffee would you like to order? Enter the ID or press enter if you would like to stop ordering");
-            String id = scanner.nextLine();
-            if(id.isEmpty())
-                break;
-            Integer intId = Integer.parseInt(id);
-            if(coffeeShopController.getCoffeeById(intId) != null){
-                coffees.add(intId);
-            }
-            else
-            {
-                System.out.println("Invalid ID");
+        while (true) {
+            try {
+                coffeeShopController.listAllCoffees();
+                System.out.println("What coffee would you like to order? Enter the ID or press Enter if you would like to stop ordering");
+                String id = scanner.nextLine();
+
+                if (id.isEmpty()) {
+                    break; // Exit the loop if input is empty
+                }
+
+                Integer intId = Integer.parseInt(id.trim()); // Convert input to Integer
+                if (coffeeShopController.getCoffeeById(intId) != null) {
+                    coffees.add(intId); // Add valid ID to the list
+                } else {
+                    System.out.println("Invalid ID");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid numeric ID.");
+            } catch (Exception e) {
+                System.out.println("An unexpected error occurred: " + e.getMessage());
             }
         }
         return coffees;
     }
+
+
 
     /**
      * Allows the client to delete an existing order by entering the order ID.
@@ -348,9 +425,16 @@ public class ClientUI {
      * This method calls the controller's `viewPoints` method, passing the current
      * client's ID, to retrieve and display the number of points the client has earned.
      */
-        public void viewPoints(){
-        coffeeShopController.viewPoints(id);
+    public void viewPoints() {
+        try {
+            coffeeShopController.viewPoints(id); // Attempt to fetch and display points
+        } catch (NullPointerException e) {
+            System.out.println("Error: Unable to retrieve points. Please check your account details.");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         }
+    }
+
 
     /**
      * Displays all the orders placed by the current client.
@@ -359,13 +443,35 @@ public class ClientUI {
      *
      * It prints each order in the console.
      */
-        public void viewOrders(){
-            List<Order> orders = coffeeShopController.getAllOrders();
-            for(Order order : orders){
-                if(order.getClientID().equals(id))
+//        public void viewOrders(){
+//            List<Order> orders = coffeeShopController.getAllOrders();
+//            for(Order order : orders){
+//                if(order.getClientID().equals(id))
+//                    System.out.println(order);
+//            }
+//        }
+    public void viewOrders() {
+        try {
+            List<Order> orders = coffeeShopController.getAllOrders(); // Fetch all orders
+            boolean hasOrders = false;
+
+            for (Order order : orders) {
+                if (order.getClientID().equals(id)) {
                     System.out.println(order);
+                    hasOrders = true;
+                }
             }
+
+            if (!hasOrders) {
+                System.out.println("You have no orders.");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Error: Unable to retrieve orders. Please check your data.");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         }
+    }
+
 
 
 }
