@@ -2,8 +2,10 @@ package Controller;
 
 import Models.*;
 import Service.CoffeeShopService;
+import Utils.FoodType;
 import Utils.Role;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -77,6 +79,22 @@ public class CoffeeShopController {
             System.out.println("No admins found.");
         }
         return admins;
+    }
+
+    public List<Food> filterFoodsByType(FoodType type) {
+        List<Food> foods = new ArrayList<>(coffeeShopService.getAllFoods());
+
+        Iterator<Food> iterator = foods.iterator();
+        while (iterator.hasNext()) {
+            Food food = iterator.next();
+            if(!food.getFoodType().equals(type)) {
+                iterator.remove();
+            }
+        }
+        if (foods.isEmpty()) {
+            System.out.println("No food found.");
+        }
+        return foods;
     }
 
     /**

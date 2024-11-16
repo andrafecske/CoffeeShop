@@ -52,12 +52,14 @@ public class Food extends Product {
      */
     @Override
     public String toString() {
-        return "Food{" +
+        return
                 "ID=" + ID +
                 ", points=" + points +
                 ", price=" + price +
                 ", name='" + name + '\'' +
                 ", FoodType=" + FoodType +
-                '}' + '\n';
+                 '\n';
     }
+
+
 }

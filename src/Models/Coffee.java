@@ -77,13 +77,13 @@ public class Coffee extends Product {
      */
     @Override
     public String toString() {
-        return "Coffee{" +
+        return
                 "hasCaffeine=" + hasCaffeine +
                 ", MilkType=" + MilkType +
                 ", ID=" + ID +
                 ", points=" + points +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                '}'+'\n';
+                '\n';
     }
 }

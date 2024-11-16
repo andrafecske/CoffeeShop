@@ -2,6 +2,7 @@ package Presentation;
 
 import Controller.*;
 import Models.*;
+import Utils.FoodType;
 import Utils.Role;
 
 import java.util.ArrayList;
@@ -36,7 +37,8 @@ public class ClientUI {
                     6. Claim offers
                     7. View your orders
                     8. Sort orders by price
-                    9. Exit
+                    9. Filter foods bt type
+                    10. Exit
                     
                     """);
             System.out.println("Choose an option: ");
@@ -128,12 +130,24 @@ public class ClientUI {
                     break;
 
                 case "9":
+                    System.out.println("Enter type of foods you want to see(SNACK/SANDWICH/DESSERT/MEAL):");
+                    FoodType type = FoodType.valueOf(scanner.nextLine());
+                    List<Food> filteredFoods = new ArrayList<>(coffeeShopController.filterFoodsByType(type));
+                    System.out.println("Filtered foods by type:");
+                    for(Food food : filteredFoods) {
+                        System.out.println(food);
+                    }
+                    break;
+
+                case "10":
                     continueLoop = false;
                     break;
 
             }
         }
     }
+
+
 
     /**
      * Allows the client to order food items from the coffee shop menu.
